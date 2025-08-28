@@ -161,6 +161,16 @@ function App(_globalne) {
             } else if (window.zmienneGlobalne.aktywnyKrok === 3) {
                 window.konfigurator.rysownik = new Rysownik('canvas_krok_3', window.zmienneGlobalne);
                 window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
+            } else if (window.zmienneGlobalne.aktywnyKrok === 6) {
+                // Handle spacing restrictions for Natura 3D
+                if (window.konfigurator.taras.deska.nazwa === 'HARTIKA_TARASE_NATURA_3D_140_mm') {
+                    jQuery('input[name="deski_odstep"][value="3"]').parent().hide();
+                    jQuery('input[name="deski_odstep"][value="5"]').prop('checked', true).trigger('change');
+                } else {
+                    jQuery('input[name="deski_odstep"]').parent().show();
+                }
+                window.konfigurator.rysownik = new Rysownik('canvas_krok_6', window.zmienneGlobalne);
+                window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
             } if (window.zmienneGlobalne.aktywnyKrok === 7) {
                 window.konfigurator.rysownik = new Rysownik('canvas_krok_' + window.zmienneGlobalne.aktywnyKrok, window.zmienneGlobalne);
                 window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
@@ -264,6 +274,19 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                 });
             this.taras.ustawWartosc('deska_kolor', jQuery(deska_kontenerSelector).data('deska_kolor'), jQuery(deska_kontenerSelector).data('kodTechniczny'));
             /* this.ustawKolorListwyWPC(); */
+            
+            // Update height messages for Natura 3D (22mm instead of 25mm)
+            if(this.taras.deska.nazwa == 'HARTIKA_TARASE_NATURA_3D_140_mm'){
+                jQuery('.ulozenie_legara_maly_container span').html('Wysokość deski wraz z legarem, będzie wynosiła <strong>20 mm + 22 mm</strong>');
+                jQuery('input[name="ulozenie_legara_duzy"][value="poziome"]').next().text('38 mm + 22 mm');
+                jQuery('input[name="ulozenie_legara_duzy"][value="pionowe"]').next().text('48 mm + 22 mm');
+            } else {
+                // Reset to default 25mm messages
+                jQuery('.ulozenie_legara_maly_container span').html(this.globalne.tlumaczenia['Wybierz_rodzaj_legara_maly_komunikat']);
+                jQuery('input[name="ulozenie_legara_duzy"][value="poziome"]').next().text(this.globalne.tlumaczenia['ulozenie_legara_duzy_poziome']);
+                jQuery('input[name="ulozenie_legara_duzy"][value="pionowe"]').next().text(this.globalne.tlumaczenia['ulozenie_legara_duzy_pionowe']);
+            }
+            
             if(this.taras.deska.nazwa == 'HARTIKA_TARASE_PRO_210_mm'){
                 jQuery("#deski_dlugosc_4000 > input").click();
                 jQuery("#deski_dlugosc_3000").hide();
@@ -271,6 +294,12 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
 			else if (this.taras.deska.nazwa == 'HARTIKA_TARASE_LIGNO'){
                 jQuery("#deski_dlugosc_4000 > input").click();
                 jQuery("#deski_dlugosc_3000").hide();
+                jQuery("#deski_dlugosc_6000").hide();
+            }
+            else if (this.taras.deska.nazwa == 'HARTIKA_TARASE_NATURA_3D_140_mm'){
+                jQuery("#deski_dlugosc_3000 > input").click();
+                jQuery("#deski_dlugosc_3000").show();
+                jQuery("#deski_dlugosc_4000").show();
                 jQuery("#deski_dlugosc_6000").hide();
             }
 			else {

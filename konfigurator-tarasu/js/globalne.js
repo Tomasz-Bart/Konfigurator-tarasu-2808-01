@@ -136,6 +136,10 @@ function Globalne() {
                 ORZECH_SZLACHETNY : 'HD-03-4-5',
                 KLON_MARINA : 'HD-03-4-6',
                 DAB_ZLOTY : 'HD-03-4-7'
+            },
+            140 :{
+                JESION_WENGE : {HARTIKA_TARASE_NATURA_3D_140_mm: 'HZ-BPS03-4-1/2'},
+                IPE_TEAK : {HARTIKA_TARASE_NATURA_3D_140_mm: 'HZ-BPS03-4-3/4'}
             }
         },
         legary: {

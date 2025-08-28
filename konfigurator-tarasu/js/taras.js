@@ -109,6 +109,9 @@ function Taras () {
         }else if(_wartosc === 'HARTIKA_TARASE_PRO_210_mm') {
             // this.deska.nazwa = "HARTIKA TARASE PRO 210 mm";
             this.deska.szerokosc = 210;
+        }else if(_wartosc === 'HARTIKA_TARASE_NATURA_3D_140_mm') {
+            // this.deska.nazwa = "HARTIKA TARASE NATURA 3D 22x140mm";
+            this.deska.szerokosc = 140;
         } else {
             this.deska.szerokosc = 145;
         }

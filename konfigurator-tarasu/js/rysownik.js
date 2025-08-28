@@ -260,7 +260,11 @@ function Rysownik (_canvasId, _globalne) {
     this.rysujDeski = function (_taras) {
         var orientacjaLiniStykuDomu = _taras.liniaStykuDom ? _taras.liniaStykuDom.orientacja : null;
         var kolorDeski = this.kolorDeskiDoRysunkuDefault;
-        if(_taras.deska.kolor){
+        
+        // For Natura 3D, use fixed color #808080
+        if(_taras.deska.nazwa === 'HARTIKA_TARASE_NATURA_3D_140_mm'){
+            kolorDeski = '#808080';
+        } else if(_taras.deska.kolor){
             if(_taras.deska.kolor == 'KLON_LODOWY'){
                 kolorDeski = '#70675a';
             }else if(_taras.deska.kolor == 'SWIERK_DYMNY'){
