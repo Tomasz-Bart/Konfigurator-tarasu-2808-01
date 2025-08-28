@@ -32,7 +32,8 @@ function main(){
     window.konfigurator = new App(window.zmienneGlobalne);
     window.konfigurator.taras = new Taras();
     window.konfigurator.rysownik = new Rysownik('canvas_krok_1', window.zmienneGlobalne);
-    //konfiguracja domylsna desek i listew
+
+    //konfiguracja domyslna desek i listew
     jQuery('#deska_kontener_HARTIKA_TARASE_HOME_145_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
     jQuery('#deska_kontener_HARTIKA_TARASE_HOME_145_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['145'][window.zmienneGlobalne.kolor_deski_domyslny]['HARTIKA_TARASE_HOME_145_mm']);
     jQuery('#deska_kontener_HARTIKA_TARASE_BASE').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
@@ -51,12 +52,25 @@ function main(){
     jQuery('#listwa_maskujaca_katowa_kontener').data('listwa_maskujaca_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
     jQuery('#listwa_maskujaca_katowa_kontener').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.listwy_maskujace.listwa_maskujaca_katowa[window.zmienneGlobalne.kolor_deski_domyslny]);
 
+    // NOWE: Natura 3D - konfiguracja startowa
+    // Ustawienie domyślnych wartości dla desek Natura 3D (JESION, WENGE, IPE, TEAK)
+    jQuery('#deska_kontener_NATURA_3D_JESION').data('deska_kolor', 'JESION');
+    jQuery('#deska_kontener_NATURA_3D_JESION').data('kodTechniczny', window.zmienneGlobalne.natura3dKodyTechniczne.deski['JESION']);
+    jQuery('#deska_kontener_NATURA_3D_WENGE').data('deska_kolor', 'WENGE');
+    jQuery('#deska_kontener_NATURA_3D_WENGE').data('kodTechniczny', window.zmienneGlobalne.natura3dKodyTechniczne.deski['WENGE']);
+    jQuery('#deska_kontener_NATURA_3D_IPE').data('deska_kolor', 'IPE');
+    jQuery('#deska_kontener_NATURA_3D_IPE').data('kodTechniczny', window.zmienneGlobalne.natura3dKodyTechniczne.deski['IPE']);
+    jQuery('#deska_kontener_NATURA_3D_TEAK').data('deska_kolor', 'TEAK');
+    jQuery('#deska_kontener_NATURA_3D_TEAK').data('kodTechniczny', window.zmienneGlobalne.natura3dKodyTechniczne.deski['TEAK']);
+
+    // Listwy maskujące Natura 3D
+    jQuery('#listwa_maskujaca_natura3d_kontener').data('listwa_maskujaca_kolor', window.zmienneGlobalne.natura3dDomyslnyKolorListwy || 'JESION');
+    jQuery('#listwa_maskujaca_natura3d_kontener').data('kodTechniczny', window.zmienneGlobalne.natura3dKodyTechniczne.listwy_maskujace[window.zmienneGlobalne.natura3dDomyslnyKolorListwy || 'JESION']);
+
     window.konfigurator.krokAktywnyAkcje();
-
 }
+
 jQuery(document).ready(function () {
-
-
     //dla kolorMenu
     jQuery(".drop")
         .click(function () {
@@ -74,8 +88,8 @@ jQuery(document).ready(function () {
             window.konfigurator.zatwierdzDlugoscLinii();
         }
     });
-
 });
+
 // dodatkowe funkcje
 Number.prototype.between = function(a, b, inclusive) {
     var min = Math.min(a, b),
