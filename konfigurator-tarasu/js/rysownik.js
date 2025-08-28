@@ -260,7 +260,20 @@ function Rysownik (_canvasId, _globalne) {
     this.rysujDeski = function (_taras) {
         var orientacjaLiniStykuDomu = _taras.liniaStykuDom ? _taras.liniaStykuDom.orientacja : null;
         var kolorDeski = this.kolorDeskiDoRysunkuDefault;
-        if(_taras.deska.kolor){
+        // Dodanie obsługi Natura 3D (1:1 z oryginałem + tylko dodane kolory)
+        if(_taras.deska && _taras.deska.typ === 'NATURA_3D') {
+            if(_taras.deska.kolor == 'JESION'){
+                kolorDeski = '#D7C6B2';
+            }else if(_taras.deska.kolor == 'WENGE'){
+                kolorDeski = '#3a2f23';
+            }else if(_taras.deska.kolor == 'IPE'){
+                kolorDeski = '#745c3b';
+            }else if(_taras.deska.kolor == 'TEAK'){
+                kolorDeski = '#BC833A';
+            }else{
+                kolorDeski = this.kolorDeskiDoRysunkuDefault;
+            }
+        } else if(_taras.deska.kolor){
             if(_taras.deska.kolor == 'KLON_LODOWY'){
                 kolorDeski = '#70675a';
             }else if(_taras.deska.kolor == 'SWIERK_DYMNY'){
