@@ -43,6 +43,127 @@ function App(_globalne) {
      * @type {Rysownik}
      */
     this.rysownik = null;
+
+    // Typy desek z obsługą Natura 3D
+    this.typyDesek = [
+        'HOME',
+        'KLASS',
+        'BASE',
+        'NATURA_3D'
+    ];
+
+    // Renderowanie desek i kolorów w kroku 5
+    this.renderujDeskiKrok5 = function () {
+        var self = this;
+        jQuery('#krok_5 .deski-lista').empty();
+
+        this.typyDesek.forEach(function (typDeski) {
+            if (typDeski === 'NATURA_3D') {
+                var koloryNatura3D = [
+                    { kolor: 'JESION', nazwa: 'Jesion', kod: 'HZ-BPS03-4-1/2', obraz: 'jesion.png' },
+                    { kolor: 'WENGE',  nazwa: 'Wenge',  kod: 'HZ-BPS03-4-1/2', obraz: 'wenge.png' },
+                    { kolor: 'IPE',    nazwa: 'IPE',    kod: 'HZ-BPS03-4-3/4', obraz: 'ipe.png' },
+                    { kolor: 'TEAK',   nazwa: 'Teak',   kod: 'HZ-BPS03-4-3/4', obraz: 'teak.png' }
+                ];
+                koloryNatura3D.forEach(function(el) {
+                    var btn = jQuery('<button>')
+                        .addClass('przyciskWybierzKolor')
+                        .attr('data-kolor', el.kolor)
+                        .attr('data-typ-deski', 'NATURA_3D')
+                        .text(el.nazwa);
+                    var img = jQuery('<img>')
+                        .addClass('deska_zdjecie ' + el.kolor)
+                        .attr('src', self.globalne.tlumaczenia.sciezka_do_plikow + '/images/' + el.obraz)
+                        .attr('alt', el.nazwa);
+                    jQuery('#krok_5 .deski-lista').append(btn).append(img);
+                });
+            }
+        });
+    };
+
+    // Renderowanie wyboru listwy maskującej WPC dla Natura 3D
+    this.renderujListwyWPC = function () {
+        jQuery('#krok_5 .listwy-lista').empty();
+        var typDeski = this.taras && this.taras.deska ? this.taras.deska.typ : null;
+        if (typDeski === 'NATURA_3D') {
+            var koloryListwyNatura3D = [
+                { kolor: 'JESION', kod: 'HL-BPS03-4-1' },
+                { kolor: 'WENGE',  kod: 'HL-BPS03-4-2' },
+                { kolor: 'IPE',    kod: 'HL-BPS03-4-3' },
+                { kolor: 'TEAK',   kod: 'HL-BPS03-4-4' }
+            ];
+            koloryListwyNatura3D.forEach(function(el){
+                var btn = jQuery('<button>')
+                    .addClass('przyciskWybierzListwe')
+                    .attr('data-listwa', el.kolor)
+                    .text(el.kolor);
+                jQuery('#krok_5 .listwy-lista').append(btn);
+            });
+        }
+    };
+
+    // Obsługa kliknięcia wyboru koloru deski
+    jQuery(document).on('click', '.przyciskWybierzKolor', function() {
+        var typDeski = jQuery(this).attr('data-typ-deski');
+        var kolorDeski = jQuery(this).data('kolor');
+        if (typDeski === 'NATURA_3D') {
+            var kodTech = _globalne.hartikaKodyTechniczne.deski.NATURA_3D[kolorDeski].KOD;
+            var nazwaDeski = _globalne.hartikaKodyTechniczne.deski.NATURA_3D[kolorDeski].NAZWA;
+            window.konfigurator.taras.deska = {
+                typ: 'NATURA_3D',
+                kolor: kolorDeski,
+                kodTechniczny: kodTech,
+                nazwa: nazwaDeski
+            };
+            jQuery('.deska_zdjecie').removeClass('active');
+            jQuery('.deska_zdjecie.' + kolorDeski).addClass('active');
+            window.konfigurator.renderujListwyWPC();
+            window.konfigurator.ustawKlipsyDlaDeski();
+        }
+    });
+
+    // Obsługa kliknięcia wyboru listwy maskującej
+    jQuery(document).on('click', '.przyciskWybierzListwe', function() {
+        var typDeski = window.konfigurator.taras && window.konfigurator.taras.deska ? window.konfigurator.taras.deska.typ : null;
+        var kolorListwy = jQuery(this).data('listwa');
+        if (typDeski === 'NATURA_3D') {
+            var kodListwy = _globalne.hartikaKodyTechniczne.listwy_maskujace.listwa_maskujaca_wpc[kolorListwy];
+            window.konfigurator.taras.listwa_maskujaca = {
+                typ: 'listwa_maskujaca_wpc',
+                kolor: kolorListwy,
+                kodTechniczny: kodListwy
+            };
+        }
+    });
+
+    // Ustawianie klipsów dla Natura 3D
+    this.ustawKlipsyDlaDeski = function () {
+        var typDeski = this.taras && this.taras.deska ? this.taras.deska.typ : null;
+        if (typDeski === 'NATURA_3D') {
+            this.taras.klipsy = {
+                startowy: this.globalne.hartikaKodyTechniczne.klipsy.NATURA_3D.klips_startowy_kst,
+                srodkowy: this.globalne.hartikaKodyTechniczne.klipsy.NATURA_3D.klips_srodkowy_ksr
+            };
+        }
+    };
+
+    // Długość deski Natura 3D wybierana osobno
+    jQuery(document).on('change', '#wybor-dlugosci-deski', function() {
+        var dlugosc = jQuery(this).val();
+        window.konfigurator.taras.deska.dlugosc = dlugosc;
+    });
+
+    // Krok 5 - inicjalizacja renderowania nowych desek
+    var origKrokAktywnyAkcje = this.krokAktywnyAkcje;
+    this.krokAktywnyAkcje = function () {
+        jQuery(document).ready(() => {
+            if (window.zmienneGlobalne.aktywnyKrok === 5) {
+                this.renderujDeskiKrok5();
+            }
+            if (typeof origKrokAktywnyAkcje === 'function') origKrokAktywnyAkcje.call(this);
+        });
+    };
+
     this.zmienKrok = function (_krokNumer) {
         var walidacjaWlaczona = true;
         jQuery('#krok_' + this.globalne.aktywnyKrok + ' .walidacja_komunikat').hide();
@@ -89,17 +210,14 @@ function App(_globalne) {
     this.krokAktywnyAkcje = function () {
         jQuery(document).ready(function () {
             if (window.zmienneGlobalne.aktywnyKrok > 1) {
-                // skracam wysokość canvasu
                 var maxY = 0;
                 for (var prop in window.konfigurator.taras.ksztaltObiekt.wierzcholki) {
                     if (window.konfigurator.taras.ksztaltObiekt.wierzcholki[prop].y > maxY) {
                         maxY = window.konfigurator.taras.ksztaltObiekt.wierzcholki[prop].y;
                     }
                 }
-                //obliczam skrajny punkt na osi Y z uwzglednieniem pola input
                 var canvasMaxY = Math.round(window.zmienneGlobalne.skalujDlaCanvasWartosc(maxY) + 10 + (window.zmienneGlobalne.wysokoscZnaku * 1.5));
                 jQuery('#canvas_krok_' + window.zmienneGlobalne.aktywnyKrok).height(canvasMaxY)
-
             }
             if (window.zmienneGlobalne.aktywnyKrok === 1) {
                 window.konfigurator.rysownik = new Rysownik('canvas_krok_1', window.zmienneGlobalne);
@@ -108,35 +226,27 @@ function App(_globalne) {
                     window.zmienneGlobalne.ustawSkale(window.konfigurator.ustalSkale(window.konfigurator.rysownik.canvas.width, window.konfigurator.rysownik.canvas.height, window.konfigurator.rysownik.marginesWewnetrzynyCanvasu));
                 }
                 window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
-
-                //dzialania
                 jQuery("#canvas_krok_1").bind('mousedown', function (e) {
                     window.konfigurator.handleMouseOnClick(e);
                     jQuery("#canvas_krok_1").mousemove(function (e) {
                         window.konfigurator.handleGrabMousemove(e);
-
                     });
                     jQuery('#canvas_krok_1').bind('mouseup', function () {
                         jQuery('#canvas_krok_1').unbind('mousemove');
                         jQuery("#canvas_krok_1").mousemove(function (e) {
                             window.konfigurator.handleMousemoveHighlight(e);
                         });
-
                     });
                 });
                 jQuery("#canvas_krok_1").bind('touchstart', function (e) {
                     window.konfigurator.handleMouseOnClick(e);
                     jQuery("#canvas_krok_1").bind('touchmove', function (e) {
                         window.konfigurator.handleGrabTouchmove(e);
-
                     });
                     jQuery('#canvas_krok_1').bind('touchend', function () {
                         jQuery('#canvas_krok_1').unbind('touchmove');
                         window.konfigurator.liniaDoPrzesuwania = null;
-
                     });
-
-
                 });
                 jQuery("#canvas_krok_1").mousemove(function (e) {
                     window.konfigurator.handleMousemoveHighlight(e);
@@ -155,9 +265,6 @@ function App(_globalne) {
                 jQuery("#canvas_krok_2").bind('touchstart', function (e) {
                     window.konfigurator.handleMouseOnClick(e);
                 });
-                // jQuery("#canvas_krok_2").bind('touchstart', function (e) {
-                //     window.konfigurator.handleMousemoveHighlight(e);
-                // });
             } else if (window.zmienneGlobalne.aktywnyKrok === 3) {
                 window.konfigurator.rysownik = new Rysownik('canvas_krok_3', window.zmienneGlobalne);
                 window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
@@ -171,10 +278,6 @@ function App(_globalne) {
             }
         });
     };
-    /**
-     *
-     * @param {Taras} _taras
-     */
     this.waluta = function (countryFlag) {
         if(countryFlag == "pl-PL"){
             return "zł"
@@ -183,50 +286,39 @@ function App(_globalne) {
         }
     }
     this.ustawPodsumowanieTarasu = function (_taras) {
-        /**
-         *
-         * @type {ReturnObj}
-         */
         var podsumowanieRS = _taras.pobierzPodsumowanie();
         if(podsumowanieRS.status) {
-
-            /** {} */
             var podsumowanie = podsumowanieRS.value;
             jQuery('#nazwa_tarasu').html(podsumowanie.konfiguracja.Nazwa.label );
             jQuery('#powierzchnia_tarasu').html(podsumowanie.konfiguracja.Powierzchnia.label);
-            this.globalne.log('Taras podsumowanie', podsumowanie);           
-var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
-    '    <tr> <td>'+podsumowanie.konfiguracja.Deska.label +'</td></tr>' +
-    '    <tr> <td>'+podsumowanie.konfiguracja.Legar.label +'</td></tr>' +
-    '    <tr> <td>'+podsumowanie.konfiguracja.Klips_srodkowy.label +'</td></tr>' +
-    '    <tr> <td>'+podsumowanie.konfiguracja.Listwa_maskujaca.label +'</td></tr>' +
-    '    <tr> <td>'+podsumowanie.konfiguracja.Ulozenie.label +'</td></tr>' +
-    '    <tr> <td>'+podsumowanie.konfiguracja.Deska_wydajnosc.label +'</td></tr>' +
-
-    '</table>' +
-    '<table id="podsumowanie_elementy" class="tabela_podsumowanie">' +
-    '    <thead>' +
-    '        <tr> <th>'+this.globalne.pobierzTlumaczenie('SYSTEM_HARTIKA_TARASE') +'</th><th><strong>'+this.globalne.pobierzTlumaczenie('Ilosc') +'</strong></th><th><strong>'+this.globalne.pobierzTlumaczenie('Cena') +'</strong></th></tr>' +
-    '    </thead>' +
-    '    <tbody>' +
-    '   <tr> <td>'+podsumowanie.konfiguracja.Deska.label +'</td><td>'+podsumowanie.konfiguracja.Deska.value +'</td><td>'+ podsumowanie.konfiguracja.Deska.price +'</td></tr>' +
-    '   <tr> <td>'+podsumowanie.konfiguracja.Legar.label +'</td><td>'+podsumowanie.konfiguracja.Legar.value +'</td><td>'+ podsumowanie.konfiguracja.Legar.price +'</td></tr>' +
-    '   <tr> <td>'+podsumowanie.konfiguracja.Listwa_maskujaca.label +'</td><td>'+podsumowanie.konfiguracja.Listwa_maskujaca.value +'</td><td>'+ podsumowanie.konfiguracja.Listwa_maskujaca.price +'</td></tr>' +
-    '   <tr> <td>'+podsumowanie.konfiguracja.Klips_srodkowy.label +'</td><td>'+podsumowanie.konfiguracja.Klips_srodkowy.value +'</td><td>'+ podsumowanie.konfiguracja.Klips_srodkowy.price +'</td></tr>' +
-    '   <tr> <td>'+podsumowanie.konfiguracja.Klips_koncowy.label +'</td><td>'+podsumowanie.konfiguracja.Klips_koncowy.value +'</td><td>'+ podsumowanie.konfiguracja.Klips_koncowy.price +'</td></tr>' +
-    '   <tr> <td>'+podsumowanie.konfiguracja.Klips_startowy.label +'</td><td>'+podsumowanie.konfiguracja.Klips_startowy.value +'</td><td>'+ podsumowanie.konfiguracja.Klips_startowy.price +'</td></tr>' +
-    '   <tr style="border-top: 1px solid black;"> <td></td><td></td><td>'+ podsumowanie.konfiguracja.cenaCalkowita +'</td></tr>' +
-    '</tbody>' +
-    '</table>' +
-    '<p class="price_annotation">' + podsumowanie.konfiguracja.cenaAdnotacja + '</p>' +
-'<p>' + this.globalne.pobierzTlumaczenie("podsumowanie_uwaga") + '</p>';
-
+            this.globalne.log('Taras podsumowanie', podsumowanie);
+            var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
+                '    <tr> <td>'+podsumowanie.konfiguracja.Deska.label +'</td></tr>' +
+                '    <tr> <td>'+podsumowanie.konfiguracja.Legar.label +'</td></tr>' +
+                '    <tr> <td>'+podsumowanie.konfiguracja.Klips_srodkowy.label +'</td></tr>' +
+                '    <tr> <td>'+podsumowanie.konfiguracja.Listwa_maskujaca.label +'</td></tr>' +
+                '    <tr> <td>'+podsumowanie.konfiguracja.Ulozenie.label +'</td></tr>' +
+                '    <tr> <td>'+podsumowanie.konfiguracja.Deska_wydajnosc.label +'</td></tr>' +
+                '</table>' +
+                '<table id="podsumowanie_elementy" class="tabela_podsumowanie">' +
+                '    <thead>' +
+                '        <tr> <th>'+this.globalne.pobierzTlumaczenie('SYSTEM_HARTIKA_TARASE') +'</th><th><strong>'+this.globalne.pobierzTlumaczenie('Ilosc') +'</strong></th><th><strong>'+this.globalne.pobierzTlumaczenie('Cena') +'</strong></th></tr>' +
+                '    </thead>' +
+                '    <tbody>' +
+                '   <tr> <td>'+podsumowanie.konfiguracja.Deska.label +'</td><td>'+podsumowanie.konfiguracja.Deska.value +'</td><td>'+ podsumowanie.konfiguracja.Deska.price +'</td></tr>' +
+                '   <tr> <td>'+podsumowanie.konfiguracja.Legar.label +'</td><td>'+podsumowanie.konfiguracja.Legar.value +'</td><td>'+ podsumowanie.konfiguracja.Legar.price +'</td></tr>' +
+                '   <tr> <td>'+podsumowanie.konfiguracja.Listwa_maskujaca.label +'</td><td>'+podsumowanie.konfiguracja.Listwa_maskujaca.value +'</td><td>'+ podsumowanie.konfiguracja.Listwa_maskujaca.price +'</td></tr>' +
+                '   <tr> <td>'+podsumowanie.konfiguracja.Klips_srodkowy.label +'</td><td>'+podsumowanie.konfiguracja.Klips_srodkowy.value +'</td><td>'+ podsumowanie.konfiguracja.Klips_srodkowy.price +'</td></tr>' +
+                '   <tr> <td>'+podsumowanie.konfiguracja.Klips_koncowy.label +'</td><td>'+podsumowanie.konfiguracja.Klips_koncowy.value +'</td><td>'+ podsumowanie.konfiguracja.Klips_koncowy.price +'</td></tr>' +
+                '   <tr> <td>'+podsumowanie.konfiguracja.Klips_startowy.label +'</td><td>'+podsumowanie.konfiguracja.Klips_startowy.value +'</td><td>'+ podsumowanie.konfiguracja.Klips_startowy.price +'</td></tr>' +
+                '   <tr style="border-top: 1px solid black;"> <td></td><td></td><td>'+ podsumowanie.konfiguracja.cenaCalkowita +'</td></tr>' +
+                '</tbody>' +
+                '</table>' +
+                '<p class="price_annotation">' + podsumowanie.konfiguracja.cenaAdnotacja + '</p>' +
+                '<p>' + this.globalne.pobierzTlumaczenie("podsumowanie_uwaga") + '</p>';
             jQuery('#podsumowanie_konfiguracja').html(html);
-
-
         } else {
             this.globalne.log('podsumowanieRS', podsumowanieRS);
-            //wyswietla komunika bledu dla warunkow
             var sciezka_do_plikow = this.globalne.pobierzTlumaczenie('sciezka_do_plikow');
             html = '<div class="walidacja_komunikat" style="display: block;">' +
                 '    <table>' +
@@ -242,10 +334,8 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         if (_el.name == 'ksztalt') {
             this.rysownik = new Rysownik('canvas_krok_1', this.globalne);
             this.globalne.ustawSkale(this.ustalSkale(this.rysownik.canvas.width, this.rysownik.canvas.height, this.rysownik.marginesWewnetrzynyCanvasu));
-
             this.rysownik.konfigurujInputFields(this.taras);
             this.rysownik.konfigurujOznaczenieKrawedzi(this.taras);
-
         } else if (_el.name == 'rodzaj_legara' && _el.value === 'Legar_maly') {
             jQuery('.ulozenie_legara_maly_container').show();
             jQuery('.ulozenie_legara_duzy_container').hide();
@@ -255,7 +345,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         } else if (_el.name == 'deska') {
             var deska_kontenerSelector = '#deska_kontener_' + this.taras.deska.nazwa;
             jQuery(".drop").unbind('click');
-
             jQuery('#krok_5').find('ul.kolorMenu > li').removeClass('drop').addClass('disabled');
             jQuery('#krok_5 ' + deska_kontenerSelector).find('ul.kolorMenu > li').removeClass('disabled').addClass('drop');
             jQuery(".drop")
@@ -263,17 +352,17 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                     jQuery(this).children("ul").toggle();
                 });
             this.taras.ustawWartosc('deska_kolor', jQuery(deska_kontenerSelector).data('deska_kolor'), jQuery(deska_kontenerSelector).data('kodTechniczny'));
-            /* this.ustawKolorListwyWPC(); */
             if(this.taras.deska.nazwa == 'HARTIKA_TARASE_PRO_210_mm'){
-                jQuery("#deski_dlugosc_4000 > input").click();
-                jQuery("#deski_dlugosc_3000").hide();
-				jQuery("#deski_dlugosc_6000").hide(); }
-			else if (this.taras.deska.nazwa == 'HARTIKA_TARASE_LIGNO'){
                 jQuery("#deski_dlugosc_4000 > input").click();
                 jQuery("#deski_dlugosc_3000").hide();
                 jQuery("#deski_dlugosc_6000").hide();
             }
-			else {
+            else if (this.taras.deska.nazwa == 'HARTIKA_TARASE_LIGNO'){
+                jQuery("#deski_dlugosc_4000 > input").click();
+                jQuery("#deski_dlugosc_3000").hide();
+                jQuery("#deski_dlugosc_6000").hide();
+            }
+            else {
                 jQuery(".deski_dlugosc_input").show();
             }
         } else if (_el.name == 'deska_kolor') {
@@ -284,12 +373,9 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             jQuery('#krok_5 ' + deska_kontenerSelector).find('.przyciskWybierzKolor img').attr('src', this.globalne.tlumaczenia.sciezka_do_plikow + '/images/' + _el.kolorPlik);
             jQuery('#krok_5 ' + deska_kontenerSelector).find('.deska_zdjecie').removeClass('active');
             jQuery('#krok_5 ' + deska_kontenerSelector).find('.deska_zdjecie' + '.' + this.taras.deska.kolor).addClass('active');
-            /* this.ustawKolorListwyWPC(); */
-/*             this.taras.ustawWartosc(this.taras.listwa_maskujaca, jQuery(listwa_kontenerSelector).data('listwa_maskujaca_kolor'), jQuery(listwa_kontenerSelector).data('kodTechniczny')); */
         } else if (_el.name == 'listwa_maskujaca') {
             var listwa_kontenerSelector = '#' + this.taras.listwa_maskujaca.typ + '_kontener';
             jQuery(".drop").unbind('click');
-
             jQuery('#krok_6').find('ul.kolorMenu > li').removeClass('drop').addClass('disabled');
             jQuery('#krok_6 ' + listwa_kontenerSelector).find('ul.kolorMenu > li').removeClass('disabled').addClass('drop');
             jQuery(".drop")
@@ -297,32 +383,25 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                     jQuery(this).children("ul").toggle();
                 });
             this.taras.ustawWartosc('listwa_maskujaca_kolor', jQuery(listwa_kontenerSelector).data('listwa_maskujaca_kolor'), jQuery(listwa_kontenerSelector).data('kodTechniczny'));
-
         } else if (_el.name == 'listwa_maskujaca_kolor') {
-           var listwa_kontenerSelector = '#' + this.taras.listwa_maskujaca.typ + '_kontener';
+            var listwa_kontenerSelector = '#' + this.taras.listwa_maskujaca.typ + '_kontener';
             jQuery(listwa_kontenerSelector).data('listwa_maskujaca_kolor', _el.value);
             jQuery(listwa_kontenerSelector).data('kodTechniczny', _el.kodTechniczny);
-
-             jQuery('#krok_6 ' + listwa_kontenerSelector).find('.przyciskWybierzKolor span').text(_el.nazwa);
+            jQuery('#krok_6 ' + listwa_kontenerSelector).find('.przyciskWybierzKolor span').text(_el.nazwa);
             jQuery('#krok_6 ' + listwa_kontenerSelector).find('.przyciskWybierzKolor img').attr('src', this.globalne.tlumaczenia.sciezka_do_plikow + '/images/' + _el.kolorPlik);
             jQuery('#krok_6 ' + listwa_kontenerSelector).find('.deska_zdjecie').removeClass('active');
             jQuery('#krok_6 ' + listwa_kontenerSelector).find('.deska_zdjecie' + '.' + this.taras.listwa_maskujaca.kolor).addClass('active');
         } else if (_el.name == 'deski_odstep') {
             this.taras.ustawWartosc(_el.name, _el.value, _el.kodTechniczny);
-
         }
-
         if (przerysujTarasDlaPolaArr.indexOf(_el.name) !== -1) {
             this.rysownik.rysujTaras(this.taras);
         }
-
     };
-
 
     this.ustawKolorListwyWPC = function () {
         var listwa_kontenerSelector = '#listwa_maskujaca_wpc_kontener';
         jQuery(listwa_kontenerSelector).data('listwa_maskujaca_kolor', this.taras.deska.kolor);
-
         jQuery('#krok_6 ' + listwa_kontenerSelector).find('.przyciskWybierzKolor span').text(this.globalne.tlumaczenia[this.taras.deska.kolor]);
         jQuery('#krok_6 ' + listwa_kontenerSelector).find('.przyciskWybierzKolor img').attr('src', this.globalne.tlumaczenia.sciezka_do_plikow + '/images/kolor-' + this.taras.deska.kolor + '.png');
         jQuery('#krok_6 ' + listwa_kontenerSelector).find('.deska_zdjecie').removeClass('active');
@@ -338,26 +417,11 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             y: (evt.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
         };
     };
-
-    /**
-     *
-     * @param {Linia} _linia
-     * @param mX
-     * @param mY
-     * @param _tolerance
-     */
     this.sprawdzCzyJestLinia = function (_linia, mX, mY, _tolerance) {
         _linia.ustalStrefeAktywna(_tolerancja);
         _lini.sprawdzCzyKursorJestWStrefieAktywnej(mX, mY);
     };
-    /**
-     *
-     * @param {Linia} _linia
-     * @param _obszarDozowolony
-     * @returns {*}
-     */
     this.wykryjCzyPrzekraczaDopuszczalnyObszar = function (_linia, _obszarDozowolony) {
-        // console.log('_obszarDozowolony', _obszarDozowolony);
         if (
             !(_linia.poczatek.x.between(_obszarDozowolony.minX, _obszarDozowolony.maxX, true)
                 && _linia.poczatek.y.between(_obszarDozowolony.minY, _obszarDozowolony.maxY, true)
@@ -365,10 +429,8 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                 && _linia.koniec.y.between(_obszarDozowolony.minY, _obszarDozowolony.maxY, true))
         ) {
             if (_linia.orientacja == 'pozioma') {
-                //ustalam do której krawędzi dozwolonego obszaru zbliżył się rysunek
                 var deltaGornaGranica = Math.abs(_obszarDozowolony.minY - _linia.koniec.y);
                 var deltaDolnaGranica = Math.abs(_obszarDozowolony.maxY - _linia.koniec.y);
-                // console.log('deltaGornaGranica=' + deltaGornaGranica + ' deltaDolnaGranica = '+deltaDolnaGranica);
                 if (deltaGornaGranica < deltaDolnaGranica) {
                     _linia.poczatek.y = _obszarDozowolony.minY;
                     _linia.koniec.y = _obszarDozowolony.minY;
@@ -379,7 +441,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             } else if (_linia.orientacja == 'pionowa') {
                 var deltaLewaGranica = Math.abs(_obszarDozowolony.minX - _linia.koniec.x);
                 var deltaPrawaGranica = Math.abs(_obszarDozowolony.maxX - _linia.koniec.x);
-                // console.log('deltaLewaGranica=' + deltaLewaGranica + ' deltaPrawaGranica = '+deltaPrawaGranica);
                 if (deltaLewaGranica < deltaPrawaGranica) {
                     _linia.poczatek.x = _obszarDozowolony.minX;
                     _linia.koniec.x = _obszarDozowolony.minX;
@@ -391,7 +452,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         }
         return _linia;
     };
-    // wykrywanie i przesuwanie lini za pomoca myszki
     this.handleGrabMousemove = function (e) {
         var pozycjaKursora = this.ustalPozycjeKursoraDlaCanvasa(this.rysownik.canvas, e);
         var tolerancja = 15 * 1 / this.globalne.skala;
@@ -399,9 +459,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         e.stopPropagation();
         mouseX = parseInt(pozycjaKursora.x);
         mouseY = parseInt(pozycjaKursora.y);
-        /**
-         * @type {Linia}
-         */
         var liniaDoPodswietlenia = null;
         for (var property in this.taras.ksztaltObiekt.linie) {
             var linia = this.taras.ksztaltObiekt.linie[property];
@@ -412,12 +469,10 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             } else {
                 liniaDoPodswietlenia = null;
                 this.podswietlanaLinia = null;
-
             }
         }
         if (liniaDoPodswietlenia) {
             var wartoscPrzesuniecia = 0;
-            //inside
             if (liniaDoPodswietlenia.orientacja == 'pozioma') {
                 wartoscPrzesuniecia = mouseY - this.globalne.skalujDlaCanvasWartosc(liniaDoPodswietlenia.poczatek.y);
                 liniaDoPodswietlenia.poczatek.y += wartoscPrzesuniecia / this.globalne.skala;
@@ -431,17 +486,13 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             this.taras.ksztaltObiekt.liniaJestPrzesuwana(liniaDoPodswietlenia, wartoscPrzesuniecia / this.globalne.skala);
             this.taras.obliczPowierzchnie();
             this.rysownik.rysujTaras(this.taras);
-            // this.rysownik.rysujTekst(10, 10, 'mX= ' + mouseX + 'mY= ' + mouseY );
             this.rysownik.podswietlLinie(linia);
         }
     };
-    // przesuwanie linii na urzadzeniach mobilnych
     this.handleGrabTouchmove = function (e) {
         var touch = e.originalEvent.touches[0];
         var pozycjaKursora = this.ustalPozycjeKursoraDlaCanvasa(this.rysownik.canvas, touch);
         var tolerancja = 15 * 1 / this.globalne.skala;
-        // console.log('pozycjaKursora', pozycjaKursora);
-
         mouseX = parseInt(pozycjaKursora.x);
         mouseY = parseInt(pozycjaKursora.y);
 
@@ -449,7 +500,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             e.preventDefault();
             e.stopPropagation();
             var wartoscPrzesuniecia = 0;
-            //inside
             if (this.liniaDoPrzesuwania.orientacja == 'pozioma') {
                 wartoscPrzesuniecia = mouseY - this.globalne.skalujDlaCanvasWartosc(this.liniaDoPrzesuwania.poczatek.y);
                 this.liniaDoPrzesuwania.poczatek.y += wartoscPrzesuniecia / this.globalne.skala;
@@ -463,7 +513,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
             this.taras.ksztaltObiekt.liniaJestPrzesuwana(this.liniaDoPrzesuwania, wartoscPrzesuniecia / this.globalne.skala);
             this.taras.obliczPowierzchnie();
             this.rysownik.rysujTaras(this.taras);
-            // this.rysownik.rysujTekst(10, 10, 'mX= ' + mouseX + 'mY= ' + mouseY );
             this.rysownik.podswietlLinie(this.liniaDoPrzesuwania);
         }
     };
@@ -475,11 +524,9 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         e.stopPropagation();
         mouseX = parseInt(pozycjaKursora.x);
         mouseY = parseInt(pozycjaKursora.y);
-// console.log('e.clientX = '+e.clientX + 'e.clientY = '+e.clientY + ', mouseX = '+mouseX+' mouseY = '+mouseY)
         var liniaDoPodswietlenia = null;
         for (var property in this.taras.ksztaltObiekt.linie) {
             var linia = this.taras.ksztaltObiekt.linie[property];
-// console.log(property + ' = linia.sprawdzCzyKursorJestWStrefieAktywnej(mouseX, mouseY, tolerance)', linia.sprawdzCzyKursorJestWStrefieAktywnej(mouseX, mouseY, tolerance))
             if (linia.sprawdzCzyKursorJestWStrefieAktywnej(mouseX, mouseY, tolerancja)) {
                 liniaDoPodswietlenia = linia;
                 this.podswietlanaLinia = linia;
@@ -504,20 +551,15 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                 }
             }
         }
-        // console.log('liniaDoPodswietlenia', liniaDoPodswietlenia);
         if (liniaDoPodswietlenia || poleDoPodswietlenia) {
-            //inside
             this.rysownik.rysujTaras(this.taras);
-            // this.rysownik.rysujTekst(10, 10, 'mX= ' + mouseX + 'mY= ' + mouseY );
             liniaDoPodswietlenia ? this.rysownik.podswietlLinie(linia) : null;
             poleDoPodswietlenia ? this.rysownik.podswietlPole(pole) : null;
         } else {
             this.rysownik.rysujTaras(this.taras);
-            // this.rysownik.rysujTekst(10, 10, 'mX= ' + mouseX + 'mY= ' + mouseY );
         }
     };
     this.ustalSkale = function (_canvasSzerokosc, _canvasWysokosc, _marginesWewnetrzynyCanvasu) {
-        // console.log('ustalSkale szer, wys, marg' + _canvasSzerokosc, _canvasWysokosc, _marginesWewnetrzynyCanvasu);
         var skala = 1;
         var wymiary = this.taras.ksztaltObiekt.wymiary();
         if (wymiary.wysokosc >= wymiary.szerokosc) {
@@ -525,7 +567,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         } else {
             skala = (_canvasSzerokosc - _marginesWewnetrzynyCanvasu * 2) / wymiary.szerokosc;
         }
-
         return skala;
     };
     this.handleMouseOnClick = function (e) {
@@ -550,7 +591,6 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         }
     };
     this.zatwierdzDlugoscLinii = function () {
-        //wartosci podawane sa w metrach, aplikacja wewnętrznie korzysta z cm
         var dlugosc = Math.abs(jQuery('#inputDlugoscLinii').val()) * 100;
         this.taras.ksztaltObiekt.ustawDlugoscLinii(
             this.aktywnePoleDlugosc.linia,
@@ -572,9 +612,7 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         var x = _x;
         if (jQuery(window).width() < 780) {
             x = (jQuery(window).width() - this.szerokoscOknoPodajDlugoscLinii) / 2;
-            // console.log('width - window: ' + jQuery(window).width() + ', x: ' + x + ', this.szerokoscOknoPodajDlugoscLinii: ' + this.szerokoscOknoPodajDlugoscLinii);
         }
-
         jQuery('#oknoPodajDlugoscLinii')
             .css({'top': _y, 'left': x, 'position': 'absolute'})
             .show("fast", function () {
@@ -582,19 +620,17 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                 jQuery('#inputDlugoscLinii').val(_wartosc.toFixed(2));
                 jQuery('#inputDlugoscLinii').focus().select();
             });
-
     };
     this.generujPDF = function () {
         this.rysownik.rysujTaras(this.taras, false)
         jQuery('#obraz_tarasu').val(this.rysownik.pobierzCanvasJakoObrazek());
-       var rs = this.taras.pobierzPodsumowanie();
+        var rs = this.taras.pobierzPodsumowanie();
         if(rs.status == false){
             console.log('Error - ', rs.message)
         } else {
             jQuery('#podsumowanie').val(JSON.stringify(rs.value));
             jQuery('#konfigurator_form').submit();
         }
-
     };
     this.waliduj = function () {
         var ret = {status: false, komunikat: [this.globalne.tlumaczenia['walidacja_tekst_podstawowy']]};
@@ -666,10 +702,8 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
         }
         return ret;
     };
-
     this.walidacja_krok_6 = function () {
         var ret = {status: false, komunikat: []};
-
         if (!this.taras.deska.dlugosc) {
             ret.komunikat.push(this.globalne.tlumaczenia['walidacja_tekst_wybierz_dlugosc_deski']);
         }
