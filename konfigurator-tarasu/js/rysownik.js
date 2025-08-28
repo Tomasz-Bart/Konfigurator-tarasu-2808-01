@@ -271,6 +271,14 @@ function Rysownik (_canvasId, _globalne) {
                 kolorDeski = '#7f5f45';
             }else if(_taras.deska.kolor == 'ORZECH_SZLACHETNY'){
                 kolorDeski = '#5d453a';
+            }else if(_taras.deska.kolor == 'JESION'){
+                kolorDeski = '#d4c4a8';
+            }else if(_taras.deska.kolor == 'WENGE'){
+                kolorDeski = '#3a2f1f';
+            }else if(_taras.deska.kolor == 'IPE'){
+                kolorDeski = '#8b4513';
+            }else if(_taras.deska.kolor == 'TEAK'){
+                kolorDeski = '#b8860b';
             } else {
                 kolorDeski = this.kolorDeskiDoRysunkuDefault;
             }

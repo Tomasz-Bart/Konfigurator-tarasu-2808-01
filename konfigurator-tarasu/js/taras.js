@@ -100,17 +100,21 @@ function Taras () {
         }
     };
     this.poleDeskaUstaw = function (_wartosc) {
-        if(_wartosc === 'HARTIKA_TARASE_HOME_145_mm') {
-            // this.deska.nazwa = "HARTIKA TARASE HOME 145 mm";
+        if(_wartosc === 'HARTIKA_TARASE_HOME_25x145_mm') {
             this.deska.szerokosc = 145;
-        }else if(_wartosc === 'HARTIKA_TARASE_KLASS_160_mm') {
-            // this.deska.nazwa = "HARTIKA TARASE KLASS 160 mm";
+            this.deska.wysokosc = 25;
+        }else if(_wartosc === 'HARTIKA_TARASE_KLASS_25x160_mm') {
             this.deska.szerokosc = 160;
-        }else if(_wartosc === 'HARTIKA_TARASE_PRO_210_mm') {
-            // this.deska.nazwa = "HARTIKA TARASE PRO 210 mm";
-            this.deska.szerokosc = 210;
+            this.deska.wysokosc = 25;
+        }else if(_wartosc === 'HARTIKA_TARASE_BASE_25x145_mm') {
+            this.deska.szerokosc = 145;
+            this.deska.wysokosc = 25;
+        }else if(_wartosc === 'HARTIKA_TARASE_NATURA_3D_22x140_mm') {
+            this.deska.szerokosc = 140;
+            this.deska.wysokosc = 22;
         } else {
             this.deska.szerokosc = 145;
+            this.deska.wysokosc = 25;
         }
         this.deska.nazwa = _wartosc;
     };

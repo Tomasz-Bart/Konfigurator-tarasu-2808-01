@@ -33,16 +33,14 @@ function main(){
     window.konfigurator.taras = new Taras();
     window.konfigurator.rysownik = new Rysownik('canvas_krok_1', window.zmienneGlobalne);
     //konfiguracja domylsna desek i listew
-    jQuery('#deska_kontener_HARTIKA_TARASE_HOME_145_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
-    jQuery('#deska_kontener_HARTIKA_TARASE_HOME_145_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['145'][window.zmienneGlobalne.kolor_deski_domyslny]['HARTIKA_TARASE_HOME_145_mm']);
-    jQuery('#deska_kontener_HARTIKA_TARASE_BASE').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
-    jQuery('#deska_kontener_HARTIKA_TARASE_BASE').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['145'][window.zmienneGlobalne.kolor_deski_domyslny]['HARTIKA_TARASE_BASE']);
-    jQuery('#deska_kontener_HARTIKA_TARASE_LIGNO').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
-    jQuery('#deska_kontener_HARTIKA_TARASE_LIGNO').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['145'][window.zmienneGlobalne.kolor_deski_domyslny]['HARTIKA_TARASE_LIGNO']);
-    jQuery('#deska_kontener_HARTIKA_TARASE_KLASS_160_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
-    jQuery('#deska_kontener_HARTIKA_TARASE_KLASS_160_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['160'][window.zmienneGlobalne.kolor_deski_domyslny]);
-    jQuery('#deska_kontener_HARTIKA_TARASE_PRO_210_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
-    jQuery('#deska_kontener_HARTIKA_TARASE_PRO_210_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['210'][window.zmienneGlobalne.kolor_deski_domyslny]);
+    jQuery('#deska_kontener_HARTIKA_TARASE_HOME_25x145_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
+    jQuery('#deska_kontener_HARTIKA_TARASE_HOME_25x145_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['145'][window.zmienneGlobalne.kolor_deski_domyslny]['HARTIKA_TARASE_HOME_25x145_mm']);
+    jQuery('#deska_kontener_HARTIKA_TARASE_BASE_25x145_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
+    jQuery('#deska_kontener_HARTIKA_TARASE_BASE_25x145_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['145'][window.zmienneGlobalne.kolor_deski_domyslny]['HARTIKA_TARASE_BASE_25x145_mm']);
+    jQuery('#deska_kontener_HARTIKA_TARASE_KLASS_25x160_mm').data('deska_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
+    jQuery('#deska_kontener_HARTIKA_TARASE_KLASS_25x160_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['160'][window.zmienneGlobalne.kolor_deski_domyslny]);
+    jQuery('#deska_kontener_HARTIKA_TARASE_NATURA_3D_22x140_mm').data('deska_kolor', 'JESION');
+    jQuery('#deska_kontener_HARTIKA_TARASE_NATURA_3D_22x140_mm').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.deski['140']['JESION']);
 
     jQuery('#listwa_maskujaca_wpc_kontener').data('listwa_maskujaca_kolor', window.zmienneGlobalne.kolor_deski_domyslny);
     jQuery('#listwa_maskujaca_wpc_kontener').data('kodTechniczny', window.zmienneGlobalne.hartikaKodyTechniczne.listwy_maskujace.listwa_maskujaca_wpc[window.zmienneGlobalne.kolor_deski_domyslny]);

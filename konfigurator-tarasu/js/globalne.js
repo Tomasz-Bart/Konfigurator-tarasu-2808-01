@@ -111,13 +111,13 @@ function Globalne() {
 
         deski: {
             145 : {
-                KLON_LODOWY : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-1',HARTIKA_TARASE_LIGNO: 'HD-04-4-1', HARTIKA_TARASE_BASE: 'HD-05-4-1'},
-                SWIERK_DYMNY : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-2',HARTIKA_TARASE_LIGNO: 'HD-04-4-2',HARTIKA_TARASE_BASE: 'HD-05-4-2'},
-                MAHON_NATURALNY : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-3',HARTIKA_TARASE_LIGNO: 'HD-04-4-3',HARTIKA_TARASE_BASE: 'HD-05-4-3'},
-                DAB_LINDBERG : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-4',HARTIKA_TARASE_LIGNO: 'HD-04-4-4',HARTIKA_TARASE_BASE: 'HD-05-4-4'},
-                ORZECH_SZLACHETNY : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-5',HARTIKA_TARASE_LIGNO: 'HD-04-4-5',HARTIKA_TARASE_BASE: 'HD-05-4-5'},
-                KLON_MARINA : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-6',HARTIKA_TARASE_LIGNO: 'HD-04-4-6',HARTIKA_TARASE_BASE: 'HD-05-4-6'},
-                DAB_ZLOTY : {HARTIKA_TARASE_HOME_145_mm: 'HD-01-4-7',HARTIKA_TARASE_LIGNO: 'HD-04-4-7',HARTIKA_TARASE_BASE: 'HD-05-4-7'}
+                KLON_LODOWY : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-1', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-1'},
+                SWIERK_DYMNY : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-2', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-2'},
+                MAHON_NATURALNY : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-3', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-3'},
+                DAB_LINDBERG : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-4', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-4'},
+                ORZECH_SZLACHETNY : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-5', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-5'},
+                KLON_MARINA : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-6', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-6'},
+                DAB_ZLOTY : {HARTIKA_TARASE_HOME_25x145_mm: 'HD-01-4-7', HARTIKA_TARASE_BASE_25x145_mm: 'HD-05-4-7'}
             },
             160 :{
                 KLON_LODOWY : 'HD-02-4-1',
@@ -128,14 +128,11 @@ function Globalne() {
                 KLON_MARINA : 'HD-02-4-6',
                 DAB_ZLOTY : 'HD-02-4-7'
             },
-            210 :{
-                KLON_LODOWY : 'HD-03-4-1',
-                SWIERK_DYMNY : 'HD-03-4-2',
-                MAHON_NATURALNY : 'HD-03-4-3',
-                DAB_LINDBERG : 'HD-03-4-4',
-                ORZECH_SZLACHETNY : 'HD-03-4-5',
-                KLON_MARINA : 'HD-03-4-6',
-                DAB_ZLOTY : 'HD-03-4-7'
+            140 :{
+                JESION : 'HZ-BPS03-4-1',
+                WENGE : 'HZ-BPS03-4-2',
+                IPE : 'HZ-BPS03-4-3',
+                TEAK : 'HZ-BPS03-4-4'
             }
         },
         legary: {
@@ -150,7 +147,11 @@ function Globalne() {
                 DAB_LINDBERG : 'HL-03-4-4',
                 ORZECH_SZLACHETNY : 'HL-03-4-5',
 				KLON_MARINA : 'HL-03-4-6',
-                DAB_ZLOTY : 'HL-03-4-7'
+                DAB_ZLOTY : 'HL-03-4-7',
+                JESION : 'HL-BPS03-4-1',
+                WENGE : 'HL-BPS03-4-2',
+                IPE : 'HL-BPS03-4-3',
+                TEAK : 'HL-BPS03-4-4'
             },
             listwa_maskujaca_katowa : {
                 KLON_LODOWY : 'HLW-04-4-1',
@@ -177,6 +178,11 @@ function Globalne() {
                 klips_startowy_kst: 'HKS-01-0-6',
                 klips_srodkowy_ksr: 'HKS-02-0-6',
                 klips_koncowy_kk: 'HKS-04-0-6',
+            },
+            'natura_3d': {
+                klips_startowy_kst: 'HK-MC01-W',
+                klips_srodkowy_ksr: 'HK-MC03A-W',
+                klips_koncowy_kk: null,
             },
         }
 

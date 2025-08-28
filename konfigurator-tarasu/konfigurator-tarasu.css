@@ -5,6 +5,9 @@ canvas {
     border: none;
     margin-bottom: 10px;
 }
+#canvas_krok_5 {
+    background-color: #808080 !important;
+}
 #canvas_krok_1 {
     margin-bottom: 10px;
 }
