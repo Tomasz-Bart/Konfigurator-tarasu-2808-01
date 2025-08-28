@@ -118,6 +118,15 @@ function Taras () {
         }
         this.deska.nazwa = _wartosc;
     };
+    
+    this.pobierzKluczKlipsow = function() {
+        // For Natura 3D board, use special clips
+        if(this.deska.nazwa === 'HARTIKA_TARASE_NATURA_3D_22x140_mm') {
+            return 'natura_3d';
+        }
+        // For other boards, use gap distance as key
+        return this.deski_odstep;
+    };
 
         this.poleKsztaltUstaw = function(_wartosc){
         this.liniaStykuDom = null;
@@ -357,43 +366,44 @@ function PodsumowanieTarasu(_taras, _globalne) {
         }
         //konfiguracja klipsów
         if(_taras.deski_odstep){
-            const cenaKlipsuSrodkowego = zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_srodkowy_ksr] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_srodkowy_ksr][jezykStrony == "pl-PL" ? "pln" : "eur"]
+            var klipsKey = _taras.pobierzKluczKlipsow();
+            const cenaKlipsuSrodkowego = zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_srodkowy_ksr] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_srodkowy_ksr][jezykStrony == "pl-PL" ? "pln" : "eur"]
                 ? 
-                `${this.zaokraglenie(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_srodkowy_ksr][jezykStrony == "pl-PL" ? "pln" : "eur"] * podsumowanieElementy.ilosc_klips_srodkowy_ksr)} ${this.waluta(jezykStrony)}`
+                `${this.zaokraglenie(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_srodkowy_ksr][jezykStrony == "pl-PL" ? "pln" : "eur"] * podsumowanieElementy.ilosc_klips_srodkowy_ksr)} ${this.waluta(jezykStrony)}`
                 : 
                 "";
-            if(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_srodkowy_ksr] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_srodkowy_ksr][jezykStrony == "pl-PL" ? "pln" : "eur"]){
+            if(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_srodkowy_ksr] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_srodkowy_ksr][jezykStrony == "pl-PL" ? "pln" : "eur"]){
                 sumaCalkowita += parseFloat(cenaKlipsuSrodkowego)
             }
-            const cenaKlipsuKoncowego = zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_koncowy_kk] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_koncowy_kk][jezykStrony == "pl-PL" ? "pln" : "eur"]
+            const cenaKlipsuKoncowego = zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_koncowy_kk] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_koncowy_kk][jezykStrony == "pl-PL" ? "pln" : "eur"]
                 ? 
-                `${this.zaokraglenie(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_koncowy_kk][jezykStrony == "pl-PL" ? "pln" : "eur"] * podsumowanieElementy.ilosc_klips_koncowy_kk)} ${this.waluta(jezykStrony)}`
+                `${this.zaokraglenie(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_koncowy_kk][jezykStrony == "pl-PL" ? "pln" : "eur"] * podsumowanieElementy.ilosc_klips_koncowy_kk)} ${this.waluta(jezykStrony)}`
                 : 
                 "";
-            if(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_koncowy_kk] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_koncowy_kk][jezykStrony == "pl-PL" ? "pln" : "eur"]){
+            if(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_koncowy_kk] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_koncowy_kk][jezykStrony == "pl-PL" ? "pln" : "eur"]){
                 sumaCalkowita += parseFloat(cenaKlipsuKoncowego)
             }
-            const cenaKlipsuStartowego = zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_startowy_kst] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_startowy_kst][jezykStrony == "pl-PL" ? "pln" : "eur"]
+            const cenaKlipsuStartowego = zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_startowy_kst] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_startowy_kst][jezykStrony == "pl-PL" ? "pln" : "eur"]
                 ? 
-                `${this.zaokraglenie(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_startowy_kst][jezykStrony == "pl-PL" ? "pln" : "eur"] * podsumowanieElementy.ilosc_klips_poczatkowy_kst)} ${this.waluta(jezykStrony)}`
+                `${this.zaokraglenie(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_startowy_kst][jezykStrony == "pl-PL" ? "pln" : "eur"] * podsumowanieElementy.ilosc_klips_poczatkowy_kst)} ${this.waluta(jezykStrony)}`
                 : 
                 "";
-            if(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_startowy_kst] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_startowy_kst][jezykStrony == "pl-PL" ? "pln" : "eur"]){
+            if(zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_startowy_kst] && zmienneGlobalne.ceny[this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_startowy_kst][jezykStrony == "pl-PL" ? "pln" : "eur"]){
                 sumaCalkowita += parseFloat(cenaKlipsuStartowego)
             }
             // Klips startowy
             this.podsumowanie.konfiguracja.Klips_startowy.label = this.globalne.pobierzTlumaczenie('klips_startowy')
-            this.podsumowanie.konfiguracja.Klips_startowy.label += ' ' + this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_startowy_kst;
+            this.podsumowanie.konfiguracja.Klips_startowy.label += ' ' + this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_startowy_kst;
             this.podsumowanie.konfiguracja.Klips_startowy.value = podsumowanieElementy.ilosc_klips_poczatkowy_kst;
             this.podsumowanie.konfiguracja.Klips_startowy.price = cenaKlipsuStartowego
             // Klips środkowy
             this.podsumowanie.konfiguracja.Klips_srodkowy.label = this.globalne.pobierzTlumaczenie('klips_srodkowy')
-            this.podsumowanie.konfiguracja.Klips_srodkowy.label += ' ' + _taras.deski_odstep + ' mm / ' + this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_srodkowy_ksr;
+            this.podsumowanie.konfiguracja.Klips_srodkowy.label += ' ' + _taras.deski_odstep + ' mm / ' + this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_srodkowy_ksr;
             this.podsumowanie.konfiguracja.Klips_srodkowy.value = podsumowanieElementy.ilosc_klips_srodkowy_ksr;
             this.podsumowanie.konfiguracja.Klips_srodkowy.price = cenaKlipsuSrodkowego
             // Klips końcowy
             this.podsumowanie.konfiguracja.Klips_koncowy.label = this.globalne.pobierzTlumaczenie('klips_koncowy')
-            this.podsumowanie.konfiguracja.Klips_koncowy.label += ' ' + this.globalne.hartikaKodyTechniczne.klipsy[_taras.deski_odstep ].klips_koncowy_kk;
+            this.podsumowanie.konfiguracja.Klips_koncowy.label += ' ' + this.globalne.hartikaKodyTechniczne.klipsy[klipsKey].klips_koncowy_kk;
             this.podsumowanie.konfiguracja.Klips_koncowy.value = podsumowanieElementy.ilosc_klips_koncowy_kk;
             this.podsumowanie.konfiguracja.Klips_koncowy.price = cenaKlipsuKoncowego
         }

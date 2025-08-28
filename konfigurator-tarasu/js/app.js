@@ -161,6 +161,16 @@ function App(_globalne) {
             } else if (window.zmienneGlobalne.aktywnyKrok === 3) {
                 window.konfigurator.rysownik = new Rysownik('canvas_krok_3', window.zmienneGlobalne);
                 window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
+            } if (window.zmienneGlobalne.aktywnyKrok === 6) {
+                // Disable 3mm gap for Natura 3D board  
+                if(window.konfigurator.taras.deska.nazwa == 'HARTIKA_TARASE_NATURA_3D_22x140_mm'){
+                    jQuery('input[name="deski_odstep"][value="3"]').prop('disabled', true).parent().addClass('disabled');
+                    jQuery('input[name="deski_odstep"][value="5"]').click();
+                } else {
+                    jQuery('input[name="deski_odstep"][value="3"]').prop('disabled', false).parent().removeClass('disabled');
+                }
+                window.konfigurator.rysownik = new Rysownik('canvas_krok_' + window.zmienneGlobalne.aktywnyKrok, window.zmienneGlobalne);
+                window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
             } if (window.zmienneGlobalne.aktywnyKrok === 7) {
                 window.konfigurator.rysownik = new Rysownik('canvas_krok_' + window.zmienneGlobalne.aktywnyKrok, window.zmienneGlobalne);
                 window.konfigurator.rysownik.rysujTaras(window.konfigurator.taras);
@@ -264,16 +274,10 @@ var html = '<table id="podsumowanie_glowne" class="tabela_podsumowanie">' +
                 });
             this.taras.ustawWartosc('deska_kolor', jQuery(deska_kontenerSelector).data('deska_kolor'), jQuery(deska_kontenerSelector).data('kodTechniczny'));
             /* this.ustawKolorListwyWPC(); */
-            if(this.taras.deska.nazwa == 'HARTIKA_TARASE_PRO_210_mm'){
+            if(this.taras.deska.nazwa == 'HARTIKA_TARASE_NATURA_3D_22x140_mm'){
                 jQuery("#deski_dlugosc_4000 > input").click();
-                jQuery("#deski_dlugosc_3000").hide();
-				jQuery("#deski_dlugosc_6000").hide(); }
-			else if (this.taras.deska.nazwa == 'HARTIKA_TARASE_LIGNO'){
-                jQuery("#deski_dlugosc_4000 > input").click();
-                jQuery("#deski_dlugosc_3000").hide();
                 jQuery("#deski_dlugosc_6000").hide();
-            }
-			else {
+            } else {
                 jQuery(".deski_dlugosc_input").show();
             }
         } else if (_el.name == 'deska_kolor') {
