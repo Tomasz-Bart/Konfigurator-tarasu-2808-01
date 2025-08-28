@@ -1,0 +1,355 @@
+canvas {
+    width: 500px;
+    height: 500px;
+    background-color: lightyellow;
+    border: none;
+    margin-bottom: 10px;
+}
+#canvas_krok_1 {
+    margin-bottom: 10px;
+}
+#taras_nazwa {
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid black;
+    font-family: serif;
+    font-size: 2em;
+    background-color: #FFDD00;
+    color: black;
+	margin-bottom: 25px;
+	padding: 0px 10px;
+}
+.belka-gora {
+	display: flex;
+	justify-content: space-between;
+}
+.belka-gora > .div {
+	width: auto;
+	height: 110px;
+	margin-top: 80px;
+}
+#buttonokonfiguratorze {
+    font-size: 1em;
+    right: 0;
+    border-top: black thin solid;
+    border-bottom: black thin solid;
+    text-align: center;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    padding-bottom: 2.2em;
+	padding-top: 1.1em;
+    height: 40px;
+    margin-top: 12px;
+    background-color: black;
+    color: white;
+}
+#buttonokonfiguratorze:hover {
+    background-color: white;
+	color: black;
+}
+#kreator_tarasu_naglowek {
+    text-align: left;
+
+}
+#kreator_tarasu_naglowek h1{
+    font-family: serif;
+    margin: 0;
+    font-size: 2em;
+}
+#kreator_tarasu_naglowek p{
+    font-size: 0.7em;
+    line-height: 1;
+}
+
+.konfigurator-glowny {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /*background-color: aliceblue;*/
+}
+.konfigurator_line_for_header2 {
+    background-color: #000;
+    width: 130px;
+    height: 2px;
+}
+.konfigurator_header2 {
+    color: #000;
+    background-color: unset;
+    padding-top: 1.3em;
+	margin-left: 15px;
+    margin-right: 15px;
+    font-size: 1.3em;
+}
+
+#konfigurator-krok-indykator {
+    display: inline-flex;
+    margin-bottom: 40px;
+    margin-top: -20px;
+}
+#konfigurator-krok-indykator > ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+#konfigurator-krok-indykator > ul > li {
+    display: block;
+    width: 2em;
+    float: left;
+    cursor: pointer;
+}
+#konfigurator-krok-indykator > ul > li.active {
+    background-color: #FFDD00;
+}
+#konfigurator-krok-indykator > ul > li:hover {
+    background-color: lightyellow;
+}
+.konfigurator-nawigacja {
+    margin: 2em 0em 15em 2em;
+    text-align: right;
+}
+.konfigurator-nawigacja-przycisk {
+    font-size: 1.2em;
+    right: 0;
+    border-top: black thin solid;
+    border-bottom: black thin solid;
+    text-align: center;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    margin: 0 0.5em;
+}
+.konfigurator-nawigacja-przycisk:hover {
+    background-color: black;
+	color: white;
+}
+.konfigurator-informacja table {
+    text-align: left;
+    margin: auto;
+    border: none;
+    width: auto;
+}
+.konfigurator-informacja table td {
+    border: none;
+}
+.opcje-container {
+    display: inline-flex;
+}
+.opcje-container > span {
+    margin: 0 2em;
+    min-width: 5em;
+
+}
+.width10proc {
+    max-width: 10%;
+}
+.width20proc {
+    max-width: 20%;
+}
+.width30proc {
+    max-width: 30%;
+}
+.width40proc {
+    max-width: 40%;
+}
+.width50proc {
+    max-width: 50%;
+}
+.width60proc {
+    max-width: 60%;
+}
+.width70proc {
+    max-width: 70%;
+}
+/* kolor menu*/
+ul.kolorMenu {
+    margin: 0 auto;
+    max-width: 800px;
+    background: white;
+    /*box-shadow:0 3px 15px rgba(0,0,0,.15);*/
+    cursor: pointer;
+    color: black;
+}
+
+ul.kolorMenu::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+ul.kolorMenu, .kolorMenu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.kolorMenu ul {
+    width: 125%;
+    text-align: left;
+}
+ul.kolorMenu li {
+    float: left;
+    position: relative;
+    width: 125%;
+}
+
+ul.kolorMenu li span.przyciskWybierzKolor {
+    display: block;
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+    transition: all .3s ease-in-out;
+}
+
+ul.kolorMenu li span.przyciskWybierzKolor:hover,
+ul.kolorMenu li span.przyciskWybierzKolor:focus {
+    background: rgba(0, 0, 0, .15);
+}
+
+ul.kolorMenu li span.przyciskWybierzKolor:focus {
+    color: white;
+}
+
+ul.kolorMenu li span.przyciskWybierzKolor:not(:only-child)::after {
+    padding-left: 4px;
+    content: ' ▾';
+}
+
+ul.kolorMenu li ul li {
+    /*min-width: 190px;*/
+    padding: 0.5rem;
+}
+ul.kolorMenu li ul li span img, ul.kolorMenu li span.przyciskWybierzKolor img {
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+ul.kolorMenu li ul li span.przyciskWybierzKolor {
+    background: transparent;
+    color: #555;
+    border-bottom: 1px solid #DDE0E7;
+}
+
+ul.kolorMenu li ul li:hover,
+ul.kolorMenu li ul li:focus {
+    background: #eee;
+    color: #111;
+    width: 100%;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 4px 10px rgba(10, 20, 30, .4);
+    z-index: 1000;
+}
+/*podsumowanie*/
+#podsumowanie_konfiguracja h2, h3, h4 {
+    font-size: 1.5em;
+    margin: 0;
+}
+.tabela_podsumowanie {
+    margin: 20px auto;
+    width: 60%;
+}
+.tabela_podsumowanie, .tabela_podsumowanie td, .tabela_podsumowanie th{
+   border: none;
+}
+.tabela_podsumowanie > tbody > tr > td:nth-child(1) {
+    text-align: left;
+}
+#podsumowanie_glowne  > tbody > tr > td:nth-child(2) {
+    text-align: right;
+    font-weight: bold;
+}
+#podsumowanie_elementy > tbody > tr > td:nth-child(1), #podsumowanie_elementy > tbody > tr > td:nth-child(2) {
+    border-right: 1px solid black;
+}
+#podsumowanie_elementy > tbody > tr:nth-child(1) {
+    border-bottom: 1px solid black;
+}
+/*walidacja*/
+.walidacja_komunikat {
+    display: none;
+    color: black;
+    width: 45%;
+    margin: 10px auto;
+    padding: 0;
+    text-align: center;
+}
+.walidacja_komunikat table {
+    border: thin #ce1b13 solid;
+}
+.walidacja_komunikat td {
+    border: none;
+    vertical-align: middle;
+    padding: 6px;
+}
+.walidacja_komunikat p {
+    margin: 0;
+    font-size: 15px;
+
+}
+/* deski */
+.deska_zdjecie {
+    display: none;
+}
+.deska_zdjecie.active {
+    display: block;
+}
+.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+ul.kolorMenu li.disabled span.przyciskWybierzKolor:hover {
+    background: rgba(0, 0, 0, 0);
+}
+
+.listwa-padding{
+    padding-bottom:5vh;
+}
+.listwa_maskujaca {
+    font-size: 12px !important;
+}
+/*responsywaność*/
+
+@media only screen and (max-width: 780px) {
+    canvas {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+    #taras_nazwa {
+        font-size: 1em;
+    }
+    .opcje-container  {
+        display: grid;
+    }
+    .opcje-container > span  {
+        min-width: 2em;
+        margin: 0 auto;
+        width: 80%;
+    }
+    .width10proc, .width20proc, .width30proc, .width40proc, .width50proc, .width60proc, .width70proc {
+        max-width: 100%;
+    }
+
+    .tabela_podsumowanie {
+        width: 100%;
+    }
+	.belka-gora {
+	display: grid;
+	}
+	#buttonokonfiguratorze {
+	font-size: 1em;
+    /* right: 0; */
+    height: 65px;
+    margin-top: 0px;
+    margin-bottom: 45px;
+    /* background-color: black; */
+    /* color: white; */
+    width: 50%;
+    padding: inherit;
+    margin-left: 25%;
+    }
+}

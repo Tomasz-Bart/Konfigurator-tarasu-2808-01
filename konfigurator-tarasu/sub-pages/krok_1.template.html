@@ -1,0 +1,32 @@
+<div id="krok_1" class="krok-container">
+    %walidacja_komunikat_szablon%
+<input id="taras_nazwa" name="nazwa" value="" placeholder="%Wprowadz_nazwe_tarasu%" maxlength="60" onchange="konfigurator.wartoscZostalaZmieniona(this)">
+<div class="ozimas__header-with-line ">
+    <div class="ozimas__header-line-left konfigurator_line_for_header2"></div>
+    <h2 class="ozimas__header-text konfigurator_header2" >%Wybierz_ksztalt%	</h2>
+    <div class="ozimas__header-line-right konfigurator_line_for_header2"></div>
+</div>
+    <div  class="opcje-container">
+        <span><img src="%sciezka_do_plikow%/images/ksztalt_P.png"><br>
+            <input type="radio" name="ksztalt" value="ksztalt_P" onchange="konfigurator.wartoscZostalaZmieniona(this)" checked></span>
+        <span><img src="%sciezka_do_plikow%/images/ksztalt_L.png"><br>
+            <input type="radio" name="ksztalt" value="ksztalt_L" onchange="konfigurator.wartoscZostalaZmieniona(this)"></span>
+        <span><img src="%sciezka_do_plikow%/images/ksztalt_T.png"><br>
+            <input type="radio" name="ksztalt" value="ksztalt_T" onchange="konfigurator.wartoscZostalaZmieniona(this)"></span>
+        <span><img src="%sciezka_do_plikow%/images/ksztalt_U.png" style="transform: rotate(180deg);"><br>
+            <input type="radio" name="ksztalt" value="ksztalt_U" onchange="konfigurator.wartoscZostalaZmieniona(this)"></span>
+    </div>
+<div class="ozimas__header-with-line ">
+    <div class="ozimas__header-line-left konfigurator_line_for_header2"></div>
+    <h2 class="ozimas__header-text konfigurator_header2" >%Wprowadz_dlugosci%	</h2>
+    <div class="ozimas__header-line-right konfigurator_line_for_header2"></div>
+</div>
+    <canvas id="canvas_krok_1">
+    </canvas>
+    %walidacja_komunikat_szablon%
+    <div class="konfigurator-nawigacja">
+        <span class="konfigurator-nawigacja-przycisk" onclick="konfigurator.krokDalej()">%DALEJ%</span>
+    </div>
+
+    <!--koniec kroku-->
+</div>

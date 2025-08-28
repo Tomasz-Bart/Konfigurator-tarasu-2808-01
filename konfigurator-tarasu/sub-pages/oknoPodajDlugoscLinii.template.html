@@ -1,0 +1,27 @@
+<script type="application/javascript">
+    function inputDlugoscLiniiOnchange(event){
+        if (event.target.value && event.target.value < 1 ){
+            event.target.value = 1;
+        }
+        if (event.target.value && event.target.value > 100){
+            event.target.value = 100;
+        }
+    }
+</script>
+<style>
+    #oknoPodajDlugoscLinii {
+        width: fit-content;
+        background-color: lightgrey;
+        padding: 10px;
+        display: grid;
+    }
+    #oknoPodajDlugoscLinii > button {
+        margin: 10px 0;
+    }
+</style>
+<div id="oknoPodajDlugoscLinii" style="display: none;">
+    <label>%Wprowadz_dlugosc%</label>
+    <input type="number" min="1" max="100" step="0.01" id="inputDlugoscLinii" name="dlugoscLinii" value="" onkeyup="inputDlugoscLiniiOnchange(event)">
+    <button onclick="window.konfigurator.zatwierdzDlugoscLinii()">%ZATWIERDZ%</button>
+    <button onclick="window.konfigurator.zamknijOknoPodajDlugoscLinii()">%ANULUJ%</button>
+</div>

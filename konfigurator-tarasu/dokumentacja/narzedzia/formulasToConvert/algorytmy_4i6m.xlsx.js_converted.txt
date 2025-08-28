@@ -1,0 +1,880 @@
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]PROSTOKĄT UKŁAD PROSTOPADŁY						
+// DESKA TARASOWA UKŁAD PROSTOPADŁY 
+						
+//zmienne dla obliczen: 
+//var C13,C15,C17,E23,E25,E27,E29,E31,E33,E35,E37,E39,E41,J4,J5;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C13' : C13,'C15' : C15,'C17' : C17,'E23' : E23,'E25' : E25,'E27' : E27,'E29' : E29,'E31' : E31,'E33' : E33,'E35' : E35,'E37' : E37,'E39' : E39,'E41' : E41,'J4' : J4,'J5' : J5,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((J5/C13-excelFunctions.rounddown(J5/C13,0))*C13 >= 0.5,J5/C13-excelFunctions.rounddown(J5/C13,0) <= 0),"wymiary poprawne","zmień wymiar B tarasu/długość deski");					
+//ILOŚC DESKI METRY BIEŻACE MBD
+E23 = excelFunctions.roundup((excelFunctions.rounddown(J5/C13,0)*excelFunctions.round(J4/C15,0)*C13+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,(excelFunctions.round((J4/C15),0)/excelFunctions.rounddown(1/(J5/C13-excelFunctions.rounddown(J5/C13,0)),0))*C13)),0);						
+						
+//ILOŚĆ DESKI  SZTUKI DST
+E25 = excelFunctions.roundup(E23/C13,0);						
+						
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E27 = excelFunctions.roundup(J4*((C13/0.5)+1)*excelFunctions.rounddown(J5/C13,0)+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,J4*(2*C13*(J5/C13-excelFunctions.rounddown(J5/C13,0))+1)),0);						
+						
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E29 = excelFunctions.roundup(E27/C17,0);						
+						
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E35 = excelFunctions.roundup((2*C13+1)*excelFunctions.rounddown(J5/C13,0)+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,(2*C13*(J5/C13-excelFunctions.rounddown(J5/C13,0))+1)),0);						
+//ILOŚĆ KLIPS SRODKOWY KSR
+E31 = excelFunctions.roundup((J4/C15-1)*excelFunctions.roundup((2*C13+1)*excelFunctions.rounddown(J5/C13,0)+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,excelFunctions.roundup((2*C13*(J5/C13-excelFunctions.rounddown(J5/C13,0))+1),0)),0),0);						
+						
+//ILOŚC KLIPS KOŃCOWY KK
+E33 = E35;						
+						
+						
+//ILOŚĆ LISTWA 4m LLS
+E37 = excelFunctions.roundup((J4+J4+J5+J5)/C17,0);						
+						
+//WYDAJNOŚC Z DESKI
+E39 = excelFunctions.if(excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0)>100%,100%,excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0));						
+						
+//POWIERZCHNIA TARASU
+E41 = excelFunctions.round(J4*J5,1);						
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]PROSTOKĄT UKŁ. PROSTOP ZAMEK						
+// DESKA TARASOWA UKŁAD PROSTOPADŁY 
+						
+//zmienne dla obliczen: 
+//var C13,C15,C17,E23,E25,E27,E29,E31,E33,E35,E37,E39,E41,J4,J5;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C13' : C13,'C15' : C15,'C17' : C17,'E23' : E23,'E25' : E25,'E27' : E27,'E29' : E29,'E31' : E31,'E33' : E33,'E35' : E35,'E37' : E37,'E39' : E39,'E41' : E41,'J4' : J4,'J5' : J5,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus((C13*excelFunctions.if((J5/C13-excelFunctions.rounddown((J5/C13),0))>0,(J5/C13-excelFunctions.rounddown((J5/C13),0)),1)) >= 0.5,"wymiary poprawne","zmień wymiar B lub długość deski");					
+//ILOŚC DESKI METRY BIEŻACE MBD
+E23 = excelFunctions.if(J5<C13,excelFunctions.roundup((excelFunctions.rounddown(J5/C13,0)*excelFunctions.round(J4/C15,0)*C13+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,(excelFunctions.round((J4/C15),0)/excelFunctions.rounddown(1/(J5/C13-excelFunctions.rounddown(J5/C13,0)),0))*C13)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J5/C13,0)*excelFunctions.round(J4/C15,0)*C13+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,(excelFunctions.round((J4/C15),0)/excelFunctions.rounddown(1/(J5/C13-excelFunctions.rounddown(J5/C13,0)),0))*C13))+J4/(2*C15)*0.5*C13+(excelFunctions.rounddown((J5-0.5*C13)/C13,0)*excelFunctions.round(0.5*J4/C15,0)*C13+excelFunctions.if(excelFunctions.mod((J5-0.5*C13),C13)==0,0,(excelFunctions.round((0.5*J4/C15),0)/excelFunctions.rounddown(1/((J5-0.5*C13)/C13-excelFunctions.rounddown((J5-0.5*C13)/C13,0)),0))*C13))),0));						
+						
+//ILOŚĆ DESKI  SZTUKI DST
+E25 = excelFunctions.roundup(E23/C13,0);						
+						
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E27 = E29*C17;						
+						
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E29 = excelFunctions.roundup((excelFunctions.roundup(J4*((C13/0.5)+1)*excelFunctions.rounddown(J5/C13,0)+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,J4*(2*C13*(J5/C13-excelFunctions.rounddown(J5/C13,0))+1)),0)/C17),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J5<C13,1,J5/C13),0)*J4)/C17,0);						
+						
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E35 = excelFunctions.roundup((2*C13+1)*excelFunctions.rounddown(J5/C13,0)+excelFunctions.if(excelFunctions.mod(J5,C13)==0,0,(2*C13*(J5/C13-excelFunctions.rounddown(J5/C13,0))+1)),0);						
+//ILOŚĆ KLIPS SRODKOWY KSR
+E31 = excelFunctions.roundup(E35*(J4/C15-1),0)+excelFunctions.rounddown(excelFunctions.if(J5<C13,1,J5/C13),0)*excelFunctions.roundup(J4/C15-1,0);						
+						
+//ILOŚC KLIPS KOŃCOWY KK
+E33 = E35;						
+						
+						
+//ILOŚĆ LISTWA 4m LLS
+E37 = excelFunctions.roundup((J4+J4+J5+J5)/C17,0);						
+						
+//WYDAJNOŚC Z DESKI
+E39 = excelFunctions.if(excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0)>1,1,excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0));						
+						
+//POWIERZCHNIA TARASU
+E41 = excelFunctions.round(J4*J5,1);						
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]PROSTOKĄT UKŁAD RÓWNOLEGŁY					
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY 
+					
+//zmienne dla obliczen: 
+//var C13,C15,C17,E23,E25,E27,E29,E31,E33,E35,E37,E39,E41,J4,J5;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C13' : C13,'C15' : C15,'C17' : C17,'E23' : E23,'E25' : E25,'E27' : E27,'E29' : E29,'E31' : E31,'E33' : E33,'E35' : E35,'E37' : E37,'E39' : E39,'E41' : E41,'J4' : J4,'J5' : J5,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((J4/C13-excelFunctions.rounddown(J4/C13,0))*C13 >= 0.5,J4/C13-excelFunctions.rounddown(J4/C13,0) <= 0),"wymiary poprawne","zmień wymiar A tarasu/długość deski");				
+//ILOŚC DESKI METRY BIEŻACE MBD
+E23 = excelFunctions.roundup((excelFunctions.rounddown(J4/C13,0)*excelFunctions.round(J5/C15,0)*C13+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,(excelFunctions.round((J5/C15),0)/excelFunctions.rounddown(1/(J4/C13-excelFunctions.rounddown(J4/C13,0)),0))*C13)),0);					
+					
+//ILOŚĆ DESKI  SZTUKI DST
+E25 = excelFunctions.roundup(E23/C13,0);					
+					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E27 = excelFunctions.roundup(J5*((C13/0.5)+1)*excelFunctions.rounddown(J4/C13,0)+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,J5*(2*C13*(J4/C13-excelFunctions.rounddown(J4/C13,0))+1)),0);					
+					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E29 = excelFunctions.roundup(E27/C17,0);					
+					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E35 = excelFunctions.roundup((2*C13+1)*excelFunctions.rounddown(J4/C13,0)+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,(2*C13*(J4/C13-excelFunctions.rounddown(J4/C13,0))+1)),0);					
+//ILOŚĆ KLIPS SRODKOWY KSR
+E31 = excelFunctions.roundup(E35*(J5/C15-1),0);					
+					
+//ILOŚC KLIPS KOŃCOWY KK
+E33 = E35;					
+					
+					
+//ILOŚĆ LISTWA 4m LLS
+E37 = excelFunctions.roundup((J4+J4+J5+J5)/C17,0);					
+					
+//WYDAJNOŚC Z DESKI
+E39 = excelFunctions.if(excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0)>1,1,excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0));					
+					
+//POWIERZCHNIA TARASU
+E41 = excelFunctions.round(J4*J5,1);					
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]PROSTOKĄT UKŁ. RÓWN. ZAMEK							
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY ZAMEK POŁÓWKOWY 
+							
+//zmienne dla obliczen: 
+//var C13,C15,C17,E23,E25,E27,E29,E31,E33,E35,E37,E39,E41,J4,J5;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C13' : C13,'C15' : C15,'C17' : C17,'E23' : E23,'E25' : E25,'E27' : E27,'E29' : E29,'E31' : E31,'E33' : E33,'E35' : E35,'E37' : E37,'E39' : E39,'E41' : E41,'J4' : J4,'J5' : J5,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus((C13*excelFunctions.if((J4/C13-excelFunctions.rounddown((J4/C13),0))>0,(J4/C13-excelFunctions.rounddown((J4/C13),0)),1)) >= 0.5,"wymiary poprawne","Zmień wymiar A tarasu/długość deski");						
+//ILOŚC DESKI METRY BIEŻACE MBD
+E23 = excelFunctions.if(J4<C13,excelFunctions.roundup((excelFunctions.rounddown(J4/C13,0)*excelFunctions.round(J5/C15,0)*C13+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,(excelFunctions.round((J5/C15),0)/excelFunctions.rounddown(1/(J4/C13-excelFunctions.rounddown(J4/C13,0)),0))*C13)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J4/C13,0)*excelFunctions.round(J5/C15,0)*C13+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,(excelFunctions.round((J5/C15),0)/excelFunctions.rounddown(1/(J4/C13-excelFunctions.rounddown(J4/C13,0)),0))*C13))+J5/(2*C15)*0.5*C13+(excelFunctions.rounddown((J4-0.5*C13)/C13,0)*excelFunctions.round(0.5*J5/C15,0)*C13+excelFunctions.if(excelFunctions.mod((J4-0.5*C13),C13)==0,0,(excelFunctions.round((0.5*J5/C15),0)/excelFunctions.rounddown(1/((J4-0.5*C13)/C13-excelFunctions.rounddown((J4-0.5*C13)/C13,0)),0))*C13))),0));							
+							
+//ILOŚĆ DESKI  SZTUKI DST
+E25 = excelFunctions.roundup(E23/C13,0);							
+							
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E27 = E29*C17;							
+							
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E29 = excelFunctions.roundup((excelFunctions.roundup(J5*((C13/0.5)+1)*excelFunctions.rounddown(J4/C13,0)+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,J5*(2*C13*(J4/C13-excelFunctions.rounddown(J4/C13,0))+1)),0)/C17),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J4<C13,1,J4/C13),0)*J5)/C17,0);							
+							
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E35 = excelFunctions.roundup((2*C13+1)*excelFunctions.rounddown(J4/C13,0)+excelFunctions.if(excelFunctions.mod(J4,C13)==0,0,(2*C13*(J4/C13-excelFunctions.rounddown(J4/C13,0))+1)),0);							
+//ILOŚĆ KLIPS SRODKOWY KSR
+E31 = excelFunctions.roundup(E35*(J5/C15-1),0)+excelFunctions.rounddown(excelFunctions.if(J4<C13,1,J4/C13),0)*excelFunctions.roundup(J5/C15-1,0);							
+							
+//ILOŚC KLIPS KOŃCOWY KK
+E33 = E35;							
+							
+							
+//ILOŚĆ LISTWA 4m LLS
+E37 = excelFunctions.roundup((J4+J4+J5+J5)/C17,0);							
+							
+//WYDAJNOŚC Z DESKI
+E39 = excelFunctions.if(excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0)>1,1,excelFunctions.round(J4*J5,0)/excelFunctions.round(E25*C13*C15,0));							
+							
+//POWIERZCHNIA TARASU
+E41 = excelFunctions.round(J4*J5,1);							
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP L Prostopadły							
+// DESKA TARASOWA UKŁAD PROSTOPADŁY 
+							
+//zmienne dla obliczen: 
+//var C22,C24,C26,E32,E34,E36,E38,E40,E42,E44,E50,F32,F34,F36,F38,F40,F42,F44,F50,G32,G34,G36,G38,G40,G42,G44,G46,G48,G50,H3,H4,H5,H6,H7,H8;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E32' : E32,'E34' : E34,'E36' : E36,'E38' : E38,'E40' : E40,'E42' : E42,'E44' : E44,'E50' : E50,'F32' : F32,'F34' : F34,'F36' : F36,'F38' : F38,'F40' : F40,'F42' : F42,'F44' : F44,'F50' : F50,'G32' : G32,'G34' : G34,'G36' : G36,'G38' : G38,'G40' : G40,'G42' : G42,'G44' : G44,'G46' : G46,'G48' : G48,'G50' : G50,'H3' : H3,'H4' : H4,'H5' : H5,'H6' : H6,'H7' : H7,'H8' : H8,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H8/C22-excelFunctions.rounddown(H8/C22,0))*C22 >= 0.5,H8/C22-excelFunctions.rounddown(H8/C22,0) <= 0),"wymiary poprawne","zmień wymiar F tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H6/C22-excelFunctions.rounddown(H6/C22,0))*C22 >= 0.5,H6/C22-excelFunctions.rounddown(H6/C22,0) <= 0),"wymiary poprawne","zmień wymiar D tarasu/długość deski");					
+//ILOŚC DESKI METRY BIEŻACE MBD
+E32 = excelFunctions.roundup((excelFunctions.rounddown(H8/C22,0)*excelFunctions.round(H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,(excelFunctions.round((H3/C24),0)/excelFunctions.rounddown(1/(H8/C22-excelFunctions.rounddown(H8/C22,0)),0))*C22)),0);	
+F32 = excelFunctions.roundup((excelFunctions.rounddown(H6/C22,0)*excelFunctions.round(H5/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(excelFunctions.round((H5/C24),0)/excelFunctions.rounddown(1/(H6/C22-excelFunctions.rounddown(H6/C22,0)),0))*C22)),0);	
+G32 = excelFunctions.sum('E32:F32', zbierzZmienne());					
+//							
+//ILOŚĆ DESKI  SZTUKI DST
+E34 = excelFunctions.roundup(E32/C22,0);	
+F34 = excelFunctions.roundup(F32/C22,0);	
+G34 = excelFunctions.sum('E34:F34', zbierzZmienne());					
+//							
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E36 = excelFunctions.roundup(H3*((C22/0.5)+1)*excelFunctions.rounddown(H8/C22,0)+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,H3*(2*C22*(H8/C22-excelFunctions.rounddown(H8/C22,0))+1)),0);	
+F36 = excelFunctions.roundup(H5*((C22/0.5)+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,H5*(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0);	
+G36 = excelFunctions.sum('E36:F36', zbierzZmienne());					
+//							
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E38 = excelFunctions.roundup(E36/C26,0);	
+F38 = excelFunctions.roundup(F36/C26,0);	
+G38 = excelFunctions.sum('E38:F38', zbierzZmienne());					
+//							
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H8/C22,0)+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,(2*C22*(H8/C22-excelFunctions.rounddown(H8/C22,0))+1)),0);	
+F44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0);	
+G44 = excelFunctions.sum('E44:F44', zbierzZmienne())-F44;					
+//ILOŚĆ KLIPS SRODKOWY KSR
+E40 = excelFunctions.roundup((H3/C24-1)*excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H8/C22,0)+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,excelFunctions.roundup((2*C22*(H8/C22-excelFunctions.rounddown(H8/C22,0))+1),0)),0),0);	
+F40 = excelFunctions.roundup((H5/C24-1)*excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,excelFunctions.roundup((2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1),0)),0),0);	
+G40 = excelFunctions.sum('E40:F40', zbierzZmienne());					
+//							
+//ILOŚC KLIPS KOŃCOWY KK
+E42 = E44;	
+F42 = F44;	
+G42 = excelFunctions.sum('E42:F42', zbierzZmienne())-F42;					
+//							
+//							
+//ILOŚĆ LISTWA 4m LLS		
+G46 = excelFunctions.roundup(excelFunctions.sum('H3:H8', zbierzZmienne())/C26,0);					
+//							
+//WYDAJNOŚC Z DESKI		
+G48 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0));					
+//							
+//POWIERZCHNIA TARASU
+E50 = excelFunctions.round(H3*H8,1);	
+F50 = excelFunctions.round(H5*H6,1);	
+G50 = excelFunctions.sum('E50:F50', zbierzZmienne());					
+
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP L Prostopadły							
+// DESKA TARASOWA UKŁAD PROSTOPADŁY ZAMEK POŁÓWKOWY 
+							
+//zmienne dla obliczen: 
+//var C22,C24,C26,E68,E70,E72,E74,E76,E78,E80,E84,E86,F68,F70,F72,F74,F76,F78,F80,F84,F86,G68,G70,G72,G74,G76,G78,G80,G82,G84,G86,H3,H4,H5,H6,H7,H8;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E68' : E68,'E70' : E70,'E72' : E72,'E74' : E74,'E76' : E76,'E78' : E78,'E80' : E80,'E84' : E84,'E86' : E86,'F68' : F68,'F70' : F70,'F72' : F72,'F74' : F74,'F76' : F76,'F78' : F78,'F80' : F80,'F84' : F84,'F86' : F86,'G68' : G68,'G70' : G70,'G72' : G72,'G74' : G74,'G76' : G76,'G78' : G78,'G80' : G80,'G82' : G82,'G84' : G84,'G86' : G86,'H3' : H3,'H4' : H4,'H5' : H5,'H6' : H6,'H7' : H7,'H8' : H8,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H8/C22-excelFunctions.rounddown(H8/C22,0))*C22 >= 0.5,H8/C22-excelFunctions.rounddown(H8/C22,0) <= 0),"wymiary poprawne","zmień wymiar F tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H6/C22-excelFunctions.rounddown(H6/C22,0))*C22 >= 0.5,H6/C22-excelFunctions.rounddown(H6/C22,0) <= 0),"wymiary poprawne","zmień wymiar D tarasu/długość deski");					
+//ILOŚC DESKI METRY BIEŻACE MBD
+E68 = excelFunctions.if(H8<C22,excelFunctions.roundup((excelFunctions.rounddown(H8/C22,0)*excelFunctions.round(H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,(excelFunctions.round((H3/C24),0)/excelFunctions.rounddown(1/(H8/C22-excelFunctions.rounddown(H8/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H8/C22,0)*excelFunctions.round(H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,(excelFunctions.round((H3/C24),0)/excelFunctions.rounddown(1/(H8/C22-excelFunctions.rounddown(H8/C22,0)),0))*C22))+H3/(2*C24)*0.5*C22+(excelFunctions.rounddown((H8-0.5*C22)/C22,0)*excelFunctions.round(0.5*H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H8-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H3/C24),0)/excelFunctions.rounddown(1/((H8-0.5*C22)/C22-excelFunctions.rounddown((H8-0.5*C22)/C22,0)),0))*C22))),0));	
+F68 = excelFunctions.if(H6<C22,excelFunctions.roundup((excelFunctions.rounddown(H6/C22,0)*excelFunctions.round(H5/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(excelFunctions.round((H5/C24),0)/excelFunctions.rounddown(1/(H6/C22-excelFunctions.rounddown(H6/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H6/C22,0)*excelFunctions.round(H5/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(excelFunctions.round((H5/C24),0)/excelFunctions.rounddown(1/(H6/C22-excelFunctions.rounddown(H6/C22,0)),0))*C22))+H5/(2*C24)*0.5*C22+(excelFunctions.rounddown((H6-0.5*C22)/C22,0)*excelFunctions.round(0.5*H5/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H6-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H5/C24),0)/excelFunctions.rounddown(1/((H6-0.5*C22)/C22-excelFunctions.rounddown((H6-0.5*C22)/C22,0)),0))*C22))),0));	
+G68 = excelFunctions.sum('E68:F68', zbierzZmienne());					
+//							
+//ILOŚĆ DESKI  SZTUKI DST
+E70 = excelFunctions.roundup(E68/C22,0);	
+F70 = excelFunctions.roundup(F68/C22,0);	
+G70 = excelFunctions.sum('E70:F70', zbierzZmienne());					
+//							
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E72 = E74*C26;	
+F72 = F74*C26;	
+G72 = excelFunctions.sum('E72:F72', zbierzZmienne());					
+//							
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E74 = excelFunctions.roundup((excelFunctions.roundup(H3*((C22/0.5)+1)*excelFunctions.rounddown(H8/C22,0)+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,H3*(2*C22*(H8/C22-excelFunctions.rounddown(H8/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H8<C22,1,H8/C22),0)*H3)/C26,0);	
+F74 = excelFunctions.roundup((excelFunctions.roundup(H5*((C22/0.5)+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,H5*(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H6<C22,1,H6/C22),0)*H5)/C26,0);	
+G74 = excelFunctions.sum('E74:F74', zbierzZmienne());					
+//							
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H8/C22,0)+excelFunctions.if(excelFunctions.mod(H8,C22)==0,0,(2*C22*(H8/C22-excelFunctions.rounddown(H8/C22,0))+1)),0);	
+F80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0);	
+G80 = excelFunctions.sum('E80:F80', zbierzZmienne())-F80;					
+//ILOŚĆ KLIPS SRODKOWY KSR
+E76 = excelFunctions.roundup(E80*(H3/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H8<C22,1,H8/C22),0)*excelFunctions.roundup(H3/C24-1,0);	
+F76 = excelFunctions.roundup(F80*(H5/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H6<C22,1,H6/C22),0)*excelFunctions.roundup(H5/C24-1,0);	
+G76 = excelFunctions.sum('E76:F76', zbierzZmienne());					
+//							
+//ILOŚC KLIPS KOŃCOWY KK
+E78 = E80;	
+F78 = F80;	
+G78 = excelFunctions.sum('E78:F78', zbierzZmienne())-F78;					
+//							
+//							
+//ILOŚĆ LISTWA 4m LLS		
+G82 = excelFunctions.roundup(excelFunctions.sum('H3:H8', zbierzZmienne())/4,0);					
+//							
+//WYDAJNOŚC Z DESKI
+E84 = excelFunctions.if(excelFunctions.roundup(H3*H8,0)/excelFunctions.roundup(E70*C22*C24,0)>1,1,excelFunctions.roundup(H3*H8,0)/excelFunctions.roundup(E70*C22*C24,0));	
+F84 = excelFunctions.if(excelFunctions.roundup(H5*H6,0)/excelFunctions.roundup(F70*C22*C24,0)>1,1,excelFunctions.roundup(H5*H6,0)/excelFunctions.roundup(F70*C22*C24,0));	
+G84 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0));					
+//							
+//POWIERZCHNIA TARASU
+E86 = excelFunctions.round(H3*H8,1);	
+F86 = excelFunctions.round(H5*H6,1);	
+G86 = excelFunctions.sum('E86:F86', zbierzZmienne());					
+
+    // [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP L Równoległy					
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY 
+					
+//zmienne dla obliczen: 
+//var C22,C24,C26,E32,E34,E36,E38,E40,E42,E44,E50,F32,F34,F36,F38,F40,F42,F44,F50,G32,G34,G36,G38,G40,G42,G44,G46,G48,G50,H3,H4,H6,H7,H8;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E32' : E32,'E34' : E34,'E36' : E36,'E38' : E38,'E40' : E40,'E42' : E42,'E44' : E44,'E50' : E50,'F32' : F32,'F34' : F34,'F36' : F36,'F38' : F38,'F40' : F40,'F42' : F42,'F44' : F44,'F50' : F50,'G32' : G32,'G34' : G34,'G36' : G36,'G38' : G38,'G40' : G40,'G42' : G42,'G44' : G44,'G46' : G46,'G48' : G48,'G50' : G50,'H3' : H3,'H4' : H4,'H6' : H6,'H7' : H7,'H8' : H8,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H3/C22-excelFunctions.rounddown(H3/C22,0))*C22 >= 0.5,H3/C22-excelFunctions.rounddown(H3/C22,0) <= 0),"wymiary poprawne","zmień wymiar A tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H7/C22-excelFunctions.rounddown(H7/C22,0))*C22 >= 0.5,H7/C22-excelFunctions.rounddown(H7/C22,0) <= 0),"wymiary poprawne","zmień wymiar E tarasu/długość deski");			
+//ILOŚC DESKI METRY BIEŻACE MBD
+E32 = excelFunctions.roundup((excelFunctions.rounddown(H3/C22,0)*excelFunctions.round(H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(excelFunctions.round((H4/C24),0)/excelFunctions.rounddown(1/(H3/C22-excelFunctions.rounddown(H3/C22,0)),0))*C22)),0);	
+F32 = excelFunctions.roundup((excelFunctions.rounddown(H7/C22,0)*excelFunctions.round(H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(excelFunctions.round((H6/C24),0)/excelFunctions.rounddown(1/(H7/C22-excelFunctions.rounddown(H7/C22,0)),0))*C22)),0);	
+G32 = excelFunctions.sum('E32:F32', zbierzZmienne());			
+//					
+//ILOŚĆ DESKI  SZTUKI DST
+E34 = excelFunctions.roundup(E32/C22,0);	
+F34 = excelFunctions.roundup(F32/C22,0);	
+G34 = excelFunctions.sum('E34:F34', zbierzZmienne());			
+//					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E36 = excelFunctions.roundup(H4*((C22/0.5)+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,H4*(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0);	
+F36 = excelFunctions.roundup(H6*((C22/0.5)+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,H6*(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0);	
+G36 = excelFunctions.sum('E36:F36', zbierzZmienne());			
+//					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E38 = excelFunctions.roundup(E36/C26,0);	
+F38 = excelFunctions.roundup(F36/C26,0);	
+G38 = excelFunctions.sum('E38:F38', zbierzZmienne());			
+//					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0);	
+F44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0);	
+G44 = excelFunctions.sum('E44:F44', zbierzZmienne())-E44;			
+//ILOŚĆ KLIPS SRODKOWY KSR
+E40 = excelFunctions.roundup(E44*(H6/C24-1),0);	
+F40 = excelFunctions.roundup(F44*(H6/C24-1),0);	
+G40 = excelFunctions.sum('E40:F40', zbierzZmienne());			
+//					
+//ILOŚC KLIPS KOŃCOWY KK
+E42 = E44;	
+F42 = F44;	
+G42 = excelFunctions.sum('E42:F42', zbierzZmienne())-E42;			
+//					
+//					
+//ILOŚĆ LISTWA 4m LLS		
+G46 = excelFunctions.roundup(excelFunctions.sum('H3:H8', zbierzZmienne())/C26,0);			
+//					
+//WYDAJNOŚC Z DESKI		
+G48 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0));			
+//					
+//POWIERZCHNIA TARASU
+E50 = excelFunctions.round(H3*H4,1);	
+F50 = excelFunctions.round(H7*H6,1);	
+G50 = excelFunctions.sum('E50:F50', zbierzZmienne());			
+
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP L Równoległy					
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY ZAMEK POŁÓWKOWY 
+					
+//zmienne dla obliczen: 
+//var C22,C24,C26,E68,E70,E72,E74,E76,E78,E80,E84,E86,F68,F70,F72,F74,F76,F78,F80,F84,F86,G68,G70,G72,G74,G76,G78,G80,G82,G84,G86,H3,H4,H6,H7,H8;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E68' : E68,'E70' : E70,'E72' : E72,'E74' : E74,'E76' : E76,'E78' : E78,'E80' : E80,'E84' : E84,'E86' : E86,'F68' : F68,'F70' : F70,'F72' : F72,'F74' : F74,'F76' : F76,'F78' : F78,'F80' : F80,'F84' : F84,'F86' : F86,'G68' : G68,'G70' : G70,'G72' : G72,'G74' : G74,'G76' : G76,'G78' : G78,'G80' : G80,'G82' : G82,'G84' : G84,'G86' : G86,'H3' : H3,'H4' : H4,'H6' : H6,'H7' : H7,'H8' : H8,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H3/C22-excelFunctions.rounddown(H3/C22,0))*C22 >= 0.5,H3/C22-excelFunctions.rounddown(H3/C22,0) <= 0),"wymiary poprawne","zmień wymiar A tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H7/C22-excelFunctions.rounddown(H7/C22,0))*C22 >= 0.5,H7/C22-excelFunctions.rounddown(H7/C22,0) <= 0),"wymiary poprawne","zmień wymiar E tarasu/długość deski");			
+//ILOŚC DESKI METRY BIEŻACE MBD
+E68 = excelFunctions.if(H3<C22,excelFunctions.roundup((excelFunctions.rounddown(H3/C22,0)*excelFunctions.round(H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(excelFunctions.round((H4/C24),0)/excelFunctions.rounddown(1/(H3/C22-excelFunctions.rounddown(H3/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H3/C22,0)*excelFunctions.round(H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(excelFunctions.round((H4/C24),0)/excelFunctions.rounddown(1/(H3/C22-excelFunctions.rounddown(H3/C22,0)),0))*C22))+H4/(2*C24)*0.5*C22+(excelFunctions.rounddown((H3-0.5*C22)/C22,0)*excelFunctions.round(0.5*H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H3-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H4/C24),0)/excelFunctions.rounddown(1/((H3-0.5*C22)/C22-excelFunctions.rounddown((H3-0.5*C22)/C22,0)),0))*C22))),0));	
+F68 = excelFunctions.if(H7<C22,excelFunctions.roundup((excelFunctions.rounddown(H7/C22,0)*excelFunctions.round(H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(excelFunctions.round((H6/C24),0)/excelFunctions.rounddown(1/(H7/C22-excelFunctions.rounddown(H7/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H7/C22,0)*excelFunctions.round(H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(excelFunctions.round((H6/C24),0)/excelFunctions.rounddown(1/(H7/C22-excelFunctions.rounddown(H7/C22,0)),0))*C22))+H6/(2*C24)*0.5*C22+(excelFunctions.rounddown((H7-0.5*C22)/C22,0)*excelFunctions.round(0.5*H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H7-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H6/C24),0)/excelFunctions.rounddown(1/((H7-0.5*C22)/C22-excelFunctions.rounddown((H7-0.5*C22)/C22,0)),0))*C22))),0));	
+G68 = excelFunctions.sum('E68:F68', zbierzZmienne());			
+//					
+//ILOŚĆ DESKI  SZTUKI DST
+E70 = excelFunctions.roundup(E68/C22,0);	
+F70 = excelFunctions.roundup(F68/C22,0);	
+G70 = excelFunctions.sum('E70:F70', zbierzZmienne());			
+//					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E72 = E74*C26;	
+F72 = F74*C26;	
+G72 = excelFunctions.sum('E72:F72', zbierzZmienne());			
+//					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E74 = excelFunctions.roundup((excelFunctions.roundup(H4*((C22/0.5)+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,H4*(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H3<C22,1,H3/C22),0)*H4)/C26,0);	
+F74 = excelFunctions.roundup((excelFunctions.roundup(H6*((C22/0.5)+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,H6*(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H7<C22,1,H7/C22),0)*H6)/C26,0);	
+G74 = excelFunctions.sum('E74:F74', zbierzZmienne());			
+//					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0);	
+F80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0);	
+G80 = excelFunctions.sum('E80:F80', zbierzZmienne())-E80;			
+//ILOŚĆ KLIPS SRODKOWY KSR
+E76 = excelFunctions.roundup(E80*(H4/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H3<C22,1,H3/C22),0)*excelFunctions.roundup(H4/C24-1,0);	
+F76 = excelFunctions.roundup(F80*(H6/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H7<C22,1,H7/C22),0)*excelFunctions.roundup(H6/C24-1,0);	
+G76 = excelFunctions.sum('E76:F76', zbierzZmienne());			
+//					
+//ILOŚC KLIPS KOŃCOWY KK
+E78 = E80;	
+F78 = F80;	
+G78 = excelFunctions.sum('E78:F78', zbierzZmienne())-E78;			
+//					
+//					
+//ILOŚĆ LISTWA 4m LLS		
+G82 = excelFunctions.roundup(excelFunctions.sum('H3:H8', zbierzZmienne())/4,0);			
+//					
+//WYDAJNOŚC Z DESKI
+E84 = excelFunctions.if(excelFunctions.roundup(H3*H4,0)/excelFunctions.roundup(E70*C22*C24,0)>1,1,excelFunctions.roundup(H3*H4,0)/excelFunctions.roundup(E70*C22*C24,0));	
+F84 = excelFunctions.if(excelFunctions.roundup(H7*H6,0)/excelFunctions.roundup(F70*C22*C24,0)>1,1,excelFunctions.roundup(H7*H6,0)/excelFunctions.roundup(F70*C22*C24,0));	
+G84 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0));			
+//					
+//POWIERZCHNIA TARASU
+E86 = excelFunctions.roundup(H3*H4,0);	
+F86 = excelFunctions.roundup(H6*H7,0);	
+G86 = excelFunctions.sum('E86:F86', zbierzZmienne());			
+
+    
+    // [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP T Prostopadły					
+// DESKA TARASOWA UKŁAD PROSTOPADŁY 
+					
+//zmienne dla obliczen: 
+//var C22,C24,C26,E32,E34,E36,E38,E40,E42,E44,E50,F32,F34,F36,F38,F40,F42,F44,F50,G32,G34,G36,G38,G40,G42,G44,G46,G48,G50,H10,H3,H4,H6,H7;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E32' : E32,'E34' : E34,'E36' : E36,'E38' : E38,'E40' : E40,'E42' : E42,'E44' : E44,'E50' : E50,'F32' : F32,'F34' : F34,'F36' : F36,'F38' : F38,'F40' : F40,'F42' : F42,'F44' : F44,'F50' : F50,'G32' : G32,'G34' : G34,'G36' : G36,'G38' : G38,'G40' : G40,'G42' : G42,'G44' : G44,'G46' : G46,'G48' : G48,'G50' : G50,'H10' : H10,'H3' : H3,'H4' : H4,'H6' : H6,'H7' : H7,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H4/C22-excelFunctions.rounddown(H4/C22,0))*C22 >= 0.5,H4/C22-excelFunctions.rounddown(H4/C22,0) <= 0),"wymiary poprawne","zmień wymiar B tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H6/C22-excelFunctions.rounddown(H6/C22,0))*C22 >= 0.5,H6/C22-excelFunctions.rounddown(H6/C22,0) <= 0),"wymiary poprawne","zmień wymiar D tarasu/długość deski");
+
+//ILOŚC DESKI METRY BIEŻACE MBD
+E32 = excelFunctions.roundup((excelFunctions.rounddown(H4/C22,0)*excelFunctions.round(H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,(excelFunctions.round((H3/C24),0)/excelFunctions.rounddown(1/(H4/C22-excelFunctions.rounddown(H4/C22,0)),0))*C22)),0);	
+F32 = excelFunctions.roundup((excelFunctions.rounddown(H6/C22,0)*excelFunctions.round(H7/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(excelFunctions.round((H7/C24),0)/excelFunctions.rounddown(1/(H6/C22-excelFunctions.rounddown(H6/C22,0)),0))*C22)),0);	
+G32 = excelFunctions.sum('E32:F32', zbierzZmienne());			
+//					
+//ILOŚĆ DESKI  SZTUKI DST
+E34 = excelFunctions.roundup(E32/C22,0);	
+F34 = excelFunctions.roundup(F32/C22,0);	
+G34 = excelFunctions.sum('E34:F34', zbierzZmienne());			
+//					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E36 = excelFunctions.roundup(H3*((C22/0.5)+1)*excelFunctions.rounddown(H4/C22,0)+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,H3*(2*C22*(H4/C22-excelFunctions.rounddown(H4/C22,0))+1)),0);	
+F36 = excelFunctions.roundup(H7*((C22/0.5)+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,H7*(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0);	
+G36 = excelFunctions.sum('E36:F36', zbierzZmienne());			
+//					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E38 = excelFunctions.roundup(E36/C26,0);	
+F38 = excelFunctions.roundup(F36/C26,0);	
+G38 = excelFunctions.sum('E38:F38', zbierzZmienne());			
+//					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H4/C22,0)+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,(2*C22*(H4/C22-excelFunctions.rounddown(H4/C22,0))+1)),0);	
+F44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0);	
+G44 = excelFunctions.sum('E44:F44', zbierzZmienne());			
+//ILOŚĆ KLIPS SRODKOWY KSR
+E40 = excelFunctions.roundup((H3/C24-1)*excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H4/C22,0)+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,excelFunctions.roundup((2*C22*(H4/C22-excelFunctions.rounddown(H4/C22,0))+1),0)),0),0);	
+F40 = excelFunctions.roundup((H7/C24-1)*excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,excelFunctions.roundup((2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1),0)),0),0);	
+G40 = excelFunctions.sum('E40:F40', zbierzZmienne());			
+//					
+//ILOŚC KLIPS KOŃCOWY KK
+E42 = E44;	
+F42 = F44;	
+G42 = excelFunctions.sum('E42:F42', zbierzZmienne());			
+//					
+//					
+//ILOŚĆ LISTWA 4m LLS		
+G46 = excelFunctions.roundup(excelFunctions.sum('H3:H10', zbierzZmienne())/C26,0);			
+//					
+//WYDAJNOŚC Z DESKI		
+G48 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0));			
+//					
+//POWIERZCHNIA TARASU
+E50 = excelFunctions.round(H3*H4,1);	
+F50 = excelFunctions.round(H6*H7,1);	
+G50 = excelFunctions.sum('E50:F50', zbierzZmienne());			
+
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP T Prostopadły					
+// DESKA TARASOWA UKŁAD PROSTOPADŁY ZAMEK POŁÓWKOWY 
+					
+//zmienne dla obliczen: 
+//var C22,C24,C26,E68,E70,E72,E74,E76,E78,E80,E84,E86,F68,F70,F72,F74,F76,F78,F80,F84,F86,G68,G70,G72,G74,G76,G78,G80,G82,G84,G86,H10,H3,H4,H6,H7;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E68' : E68,'E70' : E70,'E72' : E72,'E74' : E74,'E76' : E76,'E78' : E78,'E80' : E80,'E84' : E84,'E86' : E86,'F68' : F68,'F70' : F70,'F72' : F72,'F74' : F74,'F76' : F76,'F78' : F78,'F80' : F80,'F84' : F84,'F86' : F86,'G68' : G68,'G70' : G70,'G72' : G72,'G74' : G74,'G76' : G76,'G78' : G78,'G80' : G80,'G82' : G82,'G84' : G84,'G86' : G86,'H10' : H10,'H3' : H3,'H4' : H4,'H6' : H6,'H7' : H7,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H4/C22-excelFunctions.rounddown(H4/C22,0))*C22 >= 0.5,H4/C22-excelFunctions.rounddown(H4/C22,0) <= 0),"wymiary poprawne","zmień wymiar B tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H6/C22-excelFunctions.rounddown(H6/C22,0))*C22 >= 0.5,H6/C22-excelFunctions.rounddown(H6/C22,0) <= 0),"wymiary poprawne","zmień wymiar D tarasu/długość deski");
+//ILOŚC DESKI METRY BIEŻACE MBD
+E68 = excelFunctions.if(H4<C22,excelFunctions.roundup((excelFunctions.rounddown(H4/C22,0)*excelFunctions.round(H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,(excelFunctions.round((H3/C24),0)/excelFunctions.rounddown(1/(H4/C22-excelFunctions.rounddown(H4/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H4/C22,0)*excelFunctions.round(H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,(excelFunctions.round((H3/C24),0)/excelFunctions.rounddown(1/(H4/C22-excelFunctions.rounddown(H4/C22,0)),0))*C22))+H3/(2*C24)*0.5*C22+(excelFunctions.rounddown((H4-0.5*C22)/C22,0)*excelFunctions.round(0.5*H3/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H4-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H3/C24),0)/excelFunctions.rounddown(1/((H4-0.5*C22)/C22-excelFunctions.rounddown((H4-0.5*C22)/C22,0)),0))*C22))),0));	
+F68 = excelFunctions.if(H6<C22,excelFunctions.roundup((excelFunctions.rounddown(H6/C22,0)*excelFunctions.round(H7/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(excelFunctions.round((H7/C24),0)/excelFunctions.rounddown(1/(H6/C22-excelFunctions.rounddown(H6/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H6/C22,0)*excelFunctions.round(H7/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(excelFunctions.round((H7/C24),0)/excelFunctions.rounddown(1/(H6/C22-excelFunctions.rounddown(H6/C22,0)),0))*C22))+H7/(2*C24)*0.5*C22+(excelFunctions.rounddown((H6-0.5*C22)/C22,0)*excelFunctions.round(0.5*H7/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H6-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H7/C24),0)/excelFunctions.rounddown(1/((H6-0.5*C22)/C22-excelFunctions.rounddown((H6-0.5*C22)/C22,0)),0))*C22))),0));	
+G68 = excelFunctions.sum('E68:F68', zbierzZmienne());			
+//					
+//ILOŚĆ DESKI  SZTUKI DST
+E70 = excelFunctions.roundup(E68/C22,0);	
+F70 = excelFunctions.roundup(F68/C22,0);	
+G70 = excelFunctions.sum('E70:F70', zbierzZmienne());			
+//					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E72 = E74*C26;	
+F72 = F74*C26;	
+G72 = excelFunctions.sum('E72:F72', zbierzZmienne());			
+//					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E74 = excelFunctions.roundup((excelFunctions.roundup(H3*((C22/0.5)+1)*excelFunctions.rounddown(H4/C22,0)+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,H3*(2*C22*(H4/C22-excelFunctions.rounddown(H4/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H4<C22,1,H4/C22),0)*H3)/C26,0);	
+F74 = excelFunctions.roundup((excelFunctions.roundup(H7*((C22/0.5)+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,H7*(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H6<C22,1,H6/C22),0)*H7)/C26,0);	
+G74 = excelFunctions.sum('E74:F74', zbierzZmienne());			
+//					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H4/C22,0)+excelFunctions.if(excelFunctions.mod(H4,C22)==0,0,(2*C22*(H4/C22-excelFunctions.rounddown(H4/C22,0))+1)),0);	
+F80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H6/C22,0)+excelFunctions.if(excelFunctions.mod(H6,C22)==0,0,(2*C22*(H6/C22-excelFunctions.rounddown(H6/C22,0))+1)),0);	
+G80 = excelFunctions.sum('E80:F80', zbierzZmienne());			
+//ILOŚĆ KLIPS SRODKOWY KSR
+E76 = excelFunctions.roundup(E80*(H3/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H4<C22,1,H4/C22),0)*excelFunctions.roundup(H3/C24-1,0);	
+F76 = excelFunctions.roundup(F80*(H7/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H6<C22,1,H6/C22),0)*excelFunctions.roundup(H7/C24-1,0);	
+G76 = excelFunctions.sum('E76:F76', zbierzZmienne());			
+//					
+//ILOŚC KLIPS KOŃCOWY KK
+E78 = E80;	
+F78 = F80;	
+G78 = excelFunctions.sum('E78:F78', zbierzZmienne());			
+//					
+//					
+//ILOŚĆ LISTWA 4m LLS		
+G82 = excelFunctions.roundup(excelFunctions.sum('H3:H10', zbierzZmienne())/4,0);			
+//					
+//WYDAJNOŚC Z DESKI
+E84 = excelFunctions.if(excelFunctions.roundup(H3*H4,0)/excelFunctions.roundup(E70*C22*C24,0)>1,1,excelFunctions.roundup(H3*H4,0)/excelFunctions.roundup(E70*C22*C24,0));	
+F84 = excelFunctions.if(excelFunctions.roundup(H7*H6,0)/excelFunctions.roundup(F70*C22*C24,0)>1,1,excelFunctions.roundup(H7*H6,0)/excelFunctions.roundup(F70*C22*C24,0));	
+G84 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0));			
+//					
+//POWIERZCHNIA TARASU
+E86 = excelFunctions.round(H3*H4,1);	
+F86 = excelFunctions.round(H6*H7,1);	
+G86 = excelFunctions.sum('E86:F86', zbierzZmienne());			
+
+    
+    // [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP T Równoległy					
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY 
+					
+//zmienne dla obliczen: 
+//var C22,C24,C26,E32,E34,E36,E38,E40,E42,E44,E50,F32,F34,F36,F38,F40,F42,F44,F50,G32,G34,G36,G38,G40,G42,G44,G46,G48,G50,H10,H3,H4,H6,H7;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E32' : E32,'E34' : E34,'E36' : E36,'E38' : E38,'E40' : E40,'E42' : E42,'E44' : E44,'E50' : E50,'F32' : F32,'F34' : F34,'F36' : F36,'F38' : F38,'F40' : F40,'F42' : F42,'F44' : F44,'F50' : F50,'G32' : G32,'G34' : G34,'G36' : G36,'G38' : G38,'G40' : G40,'G42' : G42,'G44' : G44,'G46' : G46,'G48' : G48,'G50' : G50,'H10' : H10,'H3' : H3,'H4' : H4,'H6' : H6,'H7' : H7,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H3/C22-excelFunctions.rounddown(H3/C22,0))*C22 >= 0.5,H3/C22-excelFunctions.rounddown(H3/C22,0) <= 0),"wymiary poprawne","zmień wymiar A tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H7/C22-excelFunctions.rounddown(H7/C22,0))*C22 >= 0.5,H7/C22-excelFunctions.rounddown(H7/C22,0) <= 0),"wymiary poprawne","zmień wymiar E tarasu/długość deski");			
+//ILOŚC DESKI METRY BIEŻACE MBD
+E32 = excelFunctions.roundup((excelFunctions.rounddown(H3/C22,0)*excelFunctions.round(H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(excelFunctions.round((H4/C24),0)/excelFunctions.rounddown(1/(H3/C22-excelFunctions.rounddown(H3/C22,0)),0))*C22)),0);	
+F32 = excelFunctions.roundup((excelFunctions.rounddown(H7/C22,0)*excelFunctions.round(H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(excelFunctions.round((H6/C24),0)/excelFunctions.rounddown(1/(H7/C22-excelFunctions.rounddown(H7/C22,0)),0))*C22)),0);	
+G32 = excelFunctions.sum('E32:F32', zbierzZmienne());			
+//					
+//ILOŚĆ DESKI  SZTUKI DST
+E34 = excelFunctions.roundup(E32/C22,0);	
+F34 = excelFunctions.roundup(F32/C22,0);	
+G34 = excelFunctions.sum('E34:F34', zbierzZmienne());			
+//					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E36 = excelFunctions.roundup(H4*((C22/0.5)+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,H4*(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0);	
+F36 = excelFunctions.roundup(H6*((C22/0.5)+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,H6*(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0);	
+G36 = excelFunctions.sum('E36:F36', zbierzZmienne());			
+//					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E38 = excelFunctions.roundup(E36/C26,0);	
+F38 = excelFunctions.roundup(F36/C26,0);	
+G38 = excelFunctions.sum('E38:F38', zbierzZmienne());			
+//					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0);	
+F44 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0);	
+G44 = excelFunctions.sum('E44:F44', zbierzZmienne())-F44;			
+//ILOŚĆ KLIPS SRODKOWY KSR
+E40 = excelFunctions.roundup(E44*(H4/C24-1),0);	
+F40 = excelFunctions.roundup(F44*(H6/C24-1),0);	
+G40 = excelFunctions.sum('E40:F40', zbierzZmienne());			
+//					
+//ILOŚC KLIPS KOŃCOWY KK
+E42 = E44;	
+F42 = F44;	
+G42 = excelFunctions.sum('E42:F42', zbierzZmienne())-F42;			
+//					
+//					
+//ILOŚĆ LISTWA 4m LLS		
+G46 = excelFunctions.roundup(excelFunctions.sum('H3:H10', zbierzZmienne())/C26,0);			
+//					
+//WYDAJNOŚC Z DESKI		
+G48 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G34*C22*C24,0));			
+//					
+//POWIERZCHNIA TARASU
+E50 = excelFunctions.round(H3*H4,1);	
+F50 = excelFunctions.round(H6*H7,1);	
+G50 = excelFunctions.sum('E50:F50', zbierzZmienne());			
+
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP T Równoległy					
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY ZAMEK POŁÓWKOWY 
+					
+//zmienne dla obliczen: 
+//var C22,C24,C26,E68,E70,E72,E74,E76,E78,E80,E84,E86,F68,F70,F72,F74,F76,F78,F80,F84,F86,G68,G70,G72,G74,G76,G78,G80,G82,G84,G86,H10,H3,H4,H6,H7;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'C22' : C22,'C24' : C24,'C26' : C26,'E68' : E68,'E70' : E70,'E72' : E72,'E74' : E74,'E76' : E76,'E78' : E78,'E80' : E80,'E84' : E84,'E86' : E86,'F68' : F68,'F70' : F70,'F72' : F72,'F74' : F74,'F76' : F76,'F78' : F78,'F80' : F80,'F84' : F84,'F86' : F86,'G68' : G68,'G70' : G70,'G72' : G72,'G74' : G74,'G76' : G76,'G78' : G78,'G80' : G80,'G82' : G82,'G84' : G84,'G86' : G86,'H10' : H10,'H3' : H3,'H4' : H4,'H6' : H6,'H7' : H7,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((H4/C22-excelFunctions.rounddown(H4/C22,0))*C22 >= 0.5,H4/C22-excelFunctions.rounddown(H4/C22,0) <= 0),"wymiary poprawne","zmień wymiar B tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((H6/C22-excelFunctions.rounddown(H6/C22,0))*C22 >= 0.5,H6/C22-excelFunctions.rounddown(H6/C22,0) <= 0),"wymiary poprawne","zmień wymiar D tarasu/długość deski");
+//ILOŚC DESKI METRY BIEŻACE MBD
+E68 = excelFunctions.if(H3<C22,excelFunctions.roundup((excelFunctions.rounddown(H3/C22,0)*excelFunctions.round(H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(excelFunctions.round((H4/C24),0)/excelFunctions.rounddown(1/(H3/C22-excelFunctions.rounddown(H3/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H3/C22,0)*excelFunctions.round(H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(excelFunctions.round((H4/C24),0)/excelFunctions.rounddown(1/(H3/C22-excelFunctions.rounddown(H3/C22,0)),0))*C22))+H4/(2*C24)*0.5*C22+(excelFunctions.rounddown((H3-0.5*C22)/C22,0)*excelFunctions.round(0.5*H4/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H3-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H4/C24),0)/excelFunctions.rounddown(1/((H3-0.5*C22)/C22-excelFunctions.rounddown((H3-0.5*C22)/C22,0)),0))*C22))),0));	
+F68 = excelFunctions.if(H7<C22,excelFunctions.roundup((excelFunctions.rounddown(H7/C22,0)*excelFunctions.round(H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(excelFunctions.round((H6/C24),0)/excelFunctions.rounddown(1/(H7/C22-excelFunctions.rounddown(H7/C22,0)),0))*C22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(H7/C22,0)*excelFunctions.round(H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(excelFunctions.round((H6/C24),0)/excelFunctions.rounddown(1/(H7/C22-excelFunctions.rounddown(H7/C22,0)),0))*C22))+H6/(2*C24)*0.5*C22+(excelFunctions.rounddown((H7-0.5*C22)/C22,0)*excelFunctions.round(0.5*H6/C24,0)*C22+excelFunctions.if(excelFunctions.mod((H7-0.5*C22),C22)==0,0,(excelFunctions.round((0.5*H6/C24),0)/excelFunctions.rounddown(1/((H7-0.5*C22)/C22-excelFunctions.rounddown((H7-0.5*C22)/C22,0)),0))*C22))),0));	
+G68 = excelFunctions.sum('E68:F68', zbierzZmienne());			
+//					
+//ILOŚĆ DESKI  SZTUKI DST
+E70 = excelFunctions.roundup(E68/C22,0);	
+F70 = excelFunctions.roundup(F68/C22,0);	
+G70 = excelFunctions.sum('E70:F70', zbierzZmienne());			
+//					
+//ILOŚC LEGAR METRY BIEŻACE MBL
+E72 = E74*C26;	
+F72 = F74*C26;	
+G72 = excelFunctions.sum('E72:F72', zbierzZmienne());			
+//					
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+E74 = excelFunctions.roundup((excelFunctions.roundup(H4*((C22/0.5)+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,H4*(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H3<C22,1,H3/C22),0)*H4)/C26,0);	
+F74 = excelFunctions.roundup((excelFunctions.roundup(H6*((C22/0.5)+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,H6*(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0)/C26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(H7<C22,1,H7/C22),0)*H6)/C26,0);	
+G74 = excelFunctions.sum('E74:F74', zbierzZmienne());			
+//					
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+E80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H3/C22,0)+excelFunctions.if(excelFunctions.mod(H3,C22)==0,0,(2*C22*(H3/C22-excelFunctions.rounddown(H3/C22,0))+1)),0);	
+F80 = excelFunctions.roundup((2*C22+1)*excelFunctions.rounddown(H7/C22,0)+excelFunctions.if(excelFunctions.mod(H7,C22)==0,0,(2*C22*(H7/C22-excelFunctions.rounddown(H7/C22,0))+1)),0);	
+G80 = excelFunctions.sum('E80:F80', zbierzZmienne())-F80;			
+//ILOŚĆ KLIPS SRODKOWY KSR
+E76 = excelFunctions.roundup(E80*(H4/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H3<C22,1,H3/C22),0)*excelFunctions.roundup(H4/C24-1,0);	
+F76 = excelFunctions.roundup(F80*(H6/C24-1),0)+excelFunctions.rounddown(excelFunctions.if(H7<C22,1,H7/C22),0)*excelFunctions.roundup(H6/C24-1,0);	
+G76 = excelFunctions.sum('E76:F76', zbierzZmienne());			
+//					
+//ILOŚC KLIPS KOŃCOWY KK
+E78 = E80;	
+F78 = F80;	
+G78 = excelFunctions.sum('E78:F78', zbierzZmienne())-F78;			
+//					
+//					
+//ILOŚĆ LISTWA 4m LLS		
+G82 = excelFunctions.roundup(excelFunctions.sum('H3:H10', zbierzZmienne())/4,0);			
+//					
+//WYDAJNOŚC Z DESKI
+E84 = excelFunctions.if(excelFunctions.roundup(H3*H4,0)/excelFunctions.roundup(E70*C22*C24,0)>1,1,excelFunctions.roundup(H3*H4,0)/excelFunctions.roundup(E70*C22*C24,0));	
+F84 = excelFunctions.if(excelFunctions.roundup(H7*H6,0)/excelFunctions.roundup(F70*C22*C24,0)>1,1,excelFunctions.roundup(H7*H6,0)/excelFunctions.roundup(F70*C22*C24,0));	
+G84 = excelFunctions.if(excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0)>1,1,excelFunctions.round(H3*H4+H6*H7,0)/excelFunctions.roundup(G70*C22*C24,0));			
+//					
+//POWIERZCHNIA TARASU
+E86 = excelFunctions.round(H3*H4,1);	
+F86 = excelFunctions.round(H6*H7,1);	
+G86 = excelFunctions.sum('E86:F86', zbierzZmienne());			
+
+    
+    // [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP C Prostopadły				
+// DESKA TARASOWA UKŁAD PROSTOPADŁY 
+				
+//zmienne dla obliczen: 
+//var E22,E24,E26,G32,G34,G36,G38,G40,G42,G44,G50,H32,H34,H36,H38,H40,H42,H44,H50,I32,I34,I36,I38,I40,I42,I44,I50,J10,J11,J3,J32,J34,J36,J38,J4,J40,J42,J44,J46,J48,J5,J50,J6,J7,J8,J9;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'E22' : E22,'E24' : E24,'E26' : E26,'G32' : G32,'G34' : G34,'G36' : G36,'G38' : G38,'G40' : G40,'G42' : G42,'G44' : G44,'G50' : G50,'H32' : H32,'H34' : H34,'H36' : H36,'H38' : H38,'H40' : H40,'H42' : H42,'H44' : H44,'H50' : H50,'I32' : I32,'I34' : I34,'I36' : I36,'I38' : I38,'I40' : I40,'I42' : I42,'I44' : I44,'I50' : I50,'J10' : J10,'J11' : J11,'J3' : J3,'J32' : J32,'J34' : J34,'J36' : J36,'J38' : J38,'J4' : J4,'J40' : J40,'J42' : J42,'J44' : J44,'J46' : J46,'J48' : J48,'J5' : J5,'J50' : J50,'J6' : J6,'J7' : J7,'J8' : J8,'J9' : J9,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((J11/E22-excelFunctions.rounddown(J11/E22,0))*E22 >= 0.5,J11/E22-excelFunctions.rounddown(J11/E22,0) <= 0),"wymiary poprawne","zmień wymiar D lub B tarasu/długość deski");	var wymiary_poprawne = excelFunctions.if(excelFunctions.or((J4/E22-excelFunctions.rounddown(J4/E22,0))*E22 >= 0.5,J4/E22-excelFunctions.rounddown(J4/E22,0) <= 0),"wymiary poprawne","zmień wymiar  B tarasu/długość deski");	var Warunek_3 = excelFunctions.ifWithStatus(excelFunctions.or((J10/E22-excelFunctions.rounddown(J10/E22,0))*E22 >= 0.5,J10/E22-excelFunctions.rounddown(J10/E22,0) <= 0),"wymiary poprawne","zmień wymiar H tarasu/długość deski");	
+//ILOŚC DESKI METRY BIEŻACE MBD
+G32 = excelFunctions.roundup((excelFunctions.rounddown(J10/E22,0)*excelFunctions.round(J9/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,(excelFunctions.round((J9/E24),0)/excelFunctions.rounddown(1/(J10/E22-excelFunctions.rounddown(J10/E22,0)),0))*E22)),0);	
+H32 = excelFunctions.roundup((excelFunctions.rounddown(J11/E22,0)*excelFunctions.round(J7/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,(excelFunctions.round((J7/E24),0)/excelFunctions.rounddown(1/(J11/E22-excelFunctions.rounddown(J11/E22,0)),0))*E22)),0);	
+I32 = excelFunctions.roundup((excelFunctions.rounddown(J4/E22,0)*excelFunctions.round(J5/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,(excelFunctions.round((J5/E24),0)/excelFunctions.rounddown(1/(J4/E22-excelFunctions.rounddown(J4/E22,0)),0))*E22)),0);	
+J32 = excelFunctions.sum('G32:I32', zbierzZmienne());	
+//				
+//ILOŚĆ DESKI  SZTUKI DST
+G34 = excelFunctions.roundup(G32/E22,0);	
+H34 = excelFunctions.roundup(H32/E22,0);	
+I34 = excelFunctions.roundup(I32/E22,0);	
+J34 = excelFunctions.sum('G34:I34', zbierzZmienne());	
+//				
+//ILOŚC LEGAR METRY BIEŻACE MBL
+G36 = excelFunctions.roundup(J9*((E22/0.5)+1)*excelFunctions.rounddown(J10/E22,0)+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,J9*(2*E22*(J10/E22-excelFunctions.rounddown(J10/E22,0))+1)),0);	
+H36 = excelFunctions.roundup(J7*((E22/0.5)+1)*excelFunctions.rounddown(J11/E22,0)+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,J7*(2*E22*(J11/E22-excelFunctions.rounddown(J11/E22,0))+1)),0);	
+I36 = excelFunctions.roundup(J5*((E22/0.5)+1)*excelFunctions.rounddown(J4/E22,0)+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,J5*(2*E22*(J4/E22-excelFunctions.rounddown(J4/E22,0))+1)),0);	
+J36 = excelFunctions.sum('G36:I36', zbierzZmienne());	
+//				
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+G38 = excelFunctions.roundup(G36/E26,0);	
+H38 = excelFunctions.roundup(H36/E26,0);	
+I38 = excelFunctions.roundup(I36/E26,0);	
+J38 = excelFunctions.sum('G38:I38', zbierzZmienne());	
+//				
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+G44 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J10/E22,0)+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,(2*E22*(J10/E22-excelFunctions.rounddown(J10/E22,0))+1)),0);	
+H44 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J11/E22,0)+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,(2*E22*(J11/E22-excelFunctions.rounddown(J11/E22,0))+1)),0);	
+I44 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J4/E22,0)+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,(2*E22*(J4/E22-excelFunctions.rounddown(J4/E22,0))+1)),0);	
+J44 = G44-H44+I44;	
+//ILOŚĆ KLIPS SRODKOWY KSR
+G40 = excelFunctions.roundup((J9/E24-1)*excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J10/E22,0)+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,excelFunctions.roundup((2*E22*(J10/E22-excelFunctions.rounddown(J10/E22,0))+1),0)),0),0);	
+H40 = excelFunctions.roundup((J7/E24-1)*excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J11/E22,0)+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,excelFunctions.roundup((2*E22*(J11/E22-excelFunctions.rounddown(J11/E22,0))+1),0)),0),0);	
+I40 = excelFunctions.roundup((J5/E24-1)*excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J4/E22,0)+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,excelFunctions.roundup((2*E22*(J4/E22-excelFunctions.rounddown(J4/E22,0))+1),0)),0),0);	
+J40 = excelFunctions.sum('G40:I40', zbierzZmienne());	
+//				
+//ILOŚC KLIPS KOŃCOWY KK
+G42 = G44;	
+H42 = H44;	
+I42 = I44;	
+J42 = G42-H42+I42;	
+//				
+//				
+//ILOŚĆ LISTWA 4m LLS			
+J46 = excelFunctions.roundup(excelFunctions.sum('J3:J10', zbierzZmienne())/E26,0);	
+//				
+//WYDAJNOŚC Z DESKI			
+J48 = excelFunctions.if(excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J34*E22*E24,0)>1,1,excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J34*E22*E24,0));	
+//				
+//POWIERZCHNIA TARASU
+G50 = excelFunctions.round(J9*J10,1);	
+H50 = excelFunctions.round(J7*J11,1);	
+I50 = excelFunctions.round(J4*J5,1);	
+J50 = excelFunctions.sum('G50:I50', zbierzZmienne());	
+
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP C Prostopadły				
+// DESKA TARASOWA UKŁAD PROSTOPADŁY ZAMEK POŁÓWKOWY 
+				
+//zmienne dla obliczen: 
+//var E22,E24,E26,G68,G70,G72,G74,G76,G78,G80,G84,G86,H68,H70,H72,H74,H76,H78,H80,H84,H86,I68,I70,I72,I74,I76,I78,I80,I84,I86,J10,J11,J3,J4,J5,J6,J68,J7,J70,J72,J74,J76,J78,J8,J80,J82,J84,J86,J9;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'E22' : E22,'E24' : E24,'E26' : E26,'G68' : G68,'G70' : G70,'G72' : G72,'G74' : G74,'G76' : G76,'G78' : G78,'G80' : G80,'G84' : G84,'G86' : G86,'H68' : H68,'H70' : H70,'H72' : H72,'H74' : H74,'H76' : H76,'H78' : H78,'H80' : H80,'H84' : H84,'H86' : H86,'I68' : I68,'I70' : I70,'I72' : I72,'I74' : I74,'I76' : I76,'I78' : I78,'I80' : I80,'I84' : I84,'I86' : I86,'J10' : J10,'J11' : J11,'J3' : J3,'J4' : J4,'J5' : J5,'J6' : J6,'J68' : J68,'J7' : J7,'J70' : J70,'J72' : J72,'J74' : J74,'J76' : J76,'J78' : J78,'J8' : J8,'J80' : J80,'J82' : J82,'J84' : J84,'J86' : J86,'J9' : J9,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((J11/E22-excelFunctions.rounddown(J11/E22,0))*E22 >= 0.5,J11/E22-excelFunctions.rounddown(J11/E22,0) <= 0),"wymiary poprawne","zmień wymiar D lub B tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((J4/E22-excelFunctions.rounddown(J4/E22,0))*E22 >= 0.5,J4/E22-excelFunctions.rounddown(J4/E22,0) <= 0),"wymiary poprawne","zmień wymiar  B tarasu/długość deski");	var Warunek_3 = excelFunctions.ifWithStatus(excelFunctions.or((J10/E22-excelFunctions.rounddown(J10/E22,0))*E22 >= 0.5,J10/E22-excelFunctions.rounddown(J10/E22,0) <= 0),"wymiary poprawne","zmień wymiar H tarasu/długość deski");	
+//ILOŚC DESKI METRY BIEŻACE MBD
+G68 = excelFunctions.if(J10<E22,excelFunctions.roundup((excelFunctions.rounddown(J10/E22,0)*excelFunctions.round(J9/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,(excelFunctions.round((J9/E24),0)/excelFunctions.rounddown(1/(J10/E22-excelFunctions.rounddown(J10/E22,0)),0))*E22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J10/E22,0)*excelFunctions.round(J9/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,(excelFunctions.round((J9/E24),0)/excelFunctions.rounddown(1/(J10/E22-excelFunctions.rounddown(J10/E22,0)),0))*E22))+J9/(2*E24)*0.5*E22+(excelFunctions.rounddown((J10-0.5*E22)/E22,0)*excelFunctions.round(0.5*J9/E24,0)*E22+excelFunctions.if(excelFunctions.mod((J10-0.5*E22),E22)==0,0,(excelFunctions.round((0.5*J9/E24),0)/excelFunctions.rounddown(1/((J10-0.5*E22)/E22-excelFunctions.rounddown((J10-0.5*E22)/E22,0)),0))*E22))),0));	
+H68 = excelFunctions.if(J11<E22,excelFunctions.roundup((excelFunctions.rounddown(J11/E22,0)*excelFunctions.round(J7/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,(excelFunctions.round((J7/E24),0)/excelFunctions.rounddown(1/(J11/E22-excelFunctions.rounddown(J11/E22,0)),0))*E22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J11/E22,0)*excelFunctions.round(J7/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,(excelFunctions.round((J7/E24),0)/excelFunctions.rounddown(1/(J11/E22-excelFunctions.rounddown(J11/E22,0)),0))*E22))+J7/(2*E24)*0.5*E22+(excelFunctions.rounddown((J11-0.5*E22)/E22,0)*excelFunctions.round(0.5*J7/E24,0)*E22+excelFunctions.if(excelFunctions.mod((J11-0.5*E22),E22)==0,0,(excelFunctions.round((0.5*J7/E24),0)/excelFunctions.rounddown(1/((J11-0.5*E22)/E22-excelFunctions.rounddown((J11-0.5*E22)/E22,0)),0))*E22))),0));	
+I68 = excelFunctions.if(J4<E22,excelFunctions.roundup((excelFunctions.rounddown(J4/E22,0)*excelFunctions.round(J5/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,(excelFunctions.round((J5/E24),0)/excelFunctions.rounddown(1/(J4/E22-excelFunctions.rounddown(J4/E22,0)),0))*E22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J4/E22,0)*excelFunctions.round(J5/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,(excelFunctions.round((J5/E24),0)/excelFunctions.rounddown(1/(J4/E22-excelFunctions.rounddown(J4/E22,0)),0))*E22))+J5/(2*E24)*0.5*E22+(excelFunctions.rounddown((J4-0.5*E22)/E22,0)*excelFunctions.round(0.5*J5/E24,0)*E22+excelFunctions.if(excelFunctions.mod((J4-0.5*E22),E22)==0,0,(excelFunctions.round((0.5*J5/E24),0)/excelFunctions.rounddown(1/((J4-0.5*E22)/E22-excelFunctions.rounddown((J4-0.5*E22)/E22,0)),0))*E22))),0));	
+J68 = excelFunctions.sum('G68:I68', zbierzZmienne());	
+//				
+//ILOŚĆ DESKI  SZTUKI DST
+G70 = excelFunctions.roundup(G68/E22,0);	
+H70 = excelFunctions.roundup(H68/E22,0);	
+I70 = excelFunctions.roundup(I68/E22,0);	
+J70 = excelFunctions.sum('G70:I70', zbierzZmienne());	
+//				
+//ILOŚC LEGAR METRY BIEŻACE MBL
+G72 = G74*E26;	
+H72 = H74*E26;	
+I72 = I74*E26;	
+J72 = excelFunctions.sum('G72:I72', zbierzZmienne());	
+//				
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+G74 = excelFunctions.roundup((excelFunctions.roundup(J9*((E22/0.5)+1)*excelFunctions.rounddown(J10/E22,0)+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,J9*(2*E22*(J10/E22-excelFunctions.rounddown(J10/E22,0))+1)),0)/E26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J10<E22,1,J10/E22),0)*J9)/E26,0);	
+H74 = excelFunctions.roundup((excelFunctions.roundup(J7*((E22/0.5)+1)*excelFunctions.rounddown(J11/E22,0)+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,J7*(2*E22*(J11/E22-excelFunctions.rounddown(J11/E22,0))+1)),0)/E26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J11<E22,1,J11/E22),0)*J7)/E26,0);	
+I74 = excelFunctions.roundup((excelFunctions.roundup(J5*((E22/0.5)+1)*excelFunctions.rounddown(J4/E22,0)+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,J5*(2*E22*(J4/E22-excelFunctions.rounddown(J4/E22,0))+1)),0)/E26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J4<E22,1,J4/E22),0)*J5)/E26,0);	
+J74 = excelFunctions.sum('G74:I74', zbierzZmienne());	
+//				
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+G80 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J10/E22,0)+excelFunctions.if(excelFunctions.mod(J10,E22)==0,0,(2*E22*(J10/E22-excelFunctions.rounddown(J10/E22,0))+1)),0);	
+H80 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J11/E22,0)+excelFunctions.if(excelFunctions.mod(J11,E22)==0,0,(2*E22*(J11/E22-excelFunctions.rounddown(J11/E22,0))+1)),0);	
+I80 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J4/E22,0)+excelFunctions.if(excelFunctions.mod(J4,E22)==0,0,(2*E22*(J4/E22-excelFunctions.rounddown(J4/E22,0))+1)),0);	
+J80 = G80-H80+I80;	
+//ILOŚĆ KLIPS SRODKOWY KSR
+G76 = excelFunctions.roundup(G80*(J9/E24-1),0)+excelFunctions.rounddown(excelFunctions.if(J10<E22,1,J10/E22),0)*excelFunctions.roundup(J9/E24-1,0);	
+H76 = excelFunctions.roundup(H80*(J7/E24-1),0)+excelFunctions.rounddown(excelFunctions.if(J11<E22,1,J11/E22),0)*excelFunctions.roundup(J7/E24-1,0);	
+I76 = excelFunctions.roundup(I80*(J5/E24-1),0)+excelFunctions.rounddown(excelFunctions.if(J4<E22,1,J4/E22),0)*excelFunctions.roundup(J5/E24-1,0);	
+J76 = excelFunctions.sum('G76:I76', zbierzZmienne());	
+//				
+//ILOŚC KLIPS KOŃCOWY KK
+G78 = G80;	
+H78 = H80;	
+I78 = I80;	
+J78 = G78-H78+I78;	
+//				
+//				
+//ILOŚĆ LISTWA 4m LLS			
+J82 = excelFunctions.roundup(excelFunctions.sum('J3:J10', zbierzZmienne())/4,0);	
+//				
+//WYDAJNOŚC Z DESKI
+G84 = excelFunctions.if(excelFunctions.roundup(J9*J10,0)/excelFunctions.roundup(G70*E22*E24,0)>1,1,excelFunctions.roundup(J9*J10,0)/excelFunctions.roundup(G70*E22*E24,0));	
+H84 = excelFunctions.if(excelFunctions.roundup(J7*J11,0)/excelFunctions.roundup(H70*E22*E24,0)>1,1,excelFunctions.roundup(J7*J11,0)/excelFunctions.roundup(H70*E22*E24,0));	
+I84 = excelFunctions.if(excelFunctions.roundup(J5*J4,0)/excelFunctions.roundup(I70*E22*E24,0)>1,1,excelFunctions.roundup(J5*J4,0)/excelFunctions.roundup(I70*E22*E24,0));	
+J84 = excelFunctions.if(excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J70*E22*E24,0)>1,1,excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J70*E22*E24,0));	
+//				
+//POWIERZCHNIA TARASU
+G86 = excelFunctions.roundup(J10*J9,1);	
+H86 = excelFunctions.roundup(J7*J11,1);	
+I86 = excelFunctions.roundup(J4*J5,1);	
+J86 = excelFunctions.sum('G86:I86', zbierzZmienne());	
+
+    
+    // [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP C Równoległy				
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY 
+				
+//zmienne dla obliczen: 
+//var E22,E24,E26,G32,G34,G36,G38,G40,G42,G44,G50,H32,H34,H36,H38,H40,H42,H44,H50,I32,I34,I36,I38,I40,I42,I44,I50,J10,J11,J3,J32,J34,J36,J38,J40,J42,J44,J46,J48,J5,J50,J6,J8,J9;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'E22' : E22,'E24' : E24,'E26' : E26,'G32' : G32,'G34' : G34,'G36' : G36,'G38' : G38,'G40' : G40,'G42' : G42,'G44' : G44,'G50' : G50,'H32' : H32,'H34' : H34,'H36' : H36,'H38' : H38,'H40' : H40,'H42' : H42,'H44' : H44,'H50' : H50,'I32' : I32,'I34' : I34,'I36' : I36,'I38' : I38,'I40' : I40,'I42' : I42,'I44' : I44,'I50' : I50,'J10' : J10,'J11' : J11,'J3' : J3,'J32' : J32,'J34' : J34,'J36' : J36,'J38' : J38,'J40' : J40,'J42' : J42,'J44' : J44,'J46' : J46,'J48' : J48,'J5' : J5,'J50' : J50,'J6' : J6,'J8' : J8,'J9' : J9,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((J3/E22-excelFunctions.rounddown(J3/E22,0))*E22 >= 0.5,J3/E22-excelFunctions.rounddown(J3/E22,0) <= 0),"wymiary poprawne","zmień wymiar A tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((J5/E22-excelFunctions.rounddown(J5/E22,0))*E22 >= 0.5,J5/E22-excelFunctions.rounddown(J5/E22,0) <= 0),"wymiary poprawne","zmień wymiar C tarasu/długość deski");	var Warunek_3 = excelFunctions.ifWithStatus(excelFunctions.or((J9/E22-excelFunctions.rounddown(J9/E22,0))*E22 >= 0.5,J9/E22-excelFunctions.rounddown(J9/E22,0) <= 0),"wymiary poprawne","zmień wymiar G tarasu/długość deski");	
+//ILOŚC DESKI METRY BIEŻACE MBD
+G32 = excelFunctions.roundup((excelFunctions.rounddown(J3/E22,0)*excelFunctions.round(J11/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,(excelFunctions.round((J11/E24),0)/excelFunctions.rounddown(1/(J3/E22-excelFunctions.rounddown(J3/E22,0)),0))*E22)),0);	
+H32 = excelFunctions.roundup((excelFunctions.rounddown(J5/E22,0)*excelFunctions.round(J6/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,(excelFunctions.round((J6/E24),0)/excelFunctions.rounddown(1/(J5/E22-excelFunctions.rounddown(J5/E22,0)),0))*E22)),0);	
+I32 = excelFunctions.roundup((excelFunctions.rounddown(J9/E22,0)*excelFunctions.round(J8/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,(excelFunctions.round((J8/E24),0)/excelFunctions.rounddown(1/(J9/E22-excelFunctions.rounddown(J9/E22,0)),0))*E22)),0);	
+J32 = excelFunctions.sum('G32:I32', zbierzZmienne());	
+//				
+//ILOŚĆ DESKI  SZTUKI DST
+G34 = excelFunctions.roundup(G32/E22,0);	
+H34 = excelFunctions.roundup(H32/E22,0);	
+I34 = excelFunctions.roundup(I32/E22,0);	
+J34 = excelFunctions.sum('G34:I34', zbierzZmienne());	
+//				
+//ILOŚC LEGAR METRY BIEŻACE MBL
+G36 = excelFunctions.roundup(J11*((E22/0.5)+1)*excelFunctions.rounddown(J3/E22,0)+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,J11*(2*E22*(J3/E22-excelFunctions.rounddown(J3/E22,0))+1)),0);	
+H36 = excelFunctions.roundup(J6*((E22/0.5)+1)*excelFunctions.rounddown(J5/E22,0)+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,J6*(2*E22*(J5/E22-excelFunctions.rounddown(J5/E22,0))+1)),0);	
+I36 = excelFunctions.roundup(J8*((E22/0.5)+1)*excelFunctions.rounddown(J9/E22,0)+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,J8*(2*E22*(J9/E22-excelFunctions.rounddown(J9/E22,0))+1)),0);	
+J36 = excelFunctions.sum('G36:I36', zbierzZmienne());	
+//				
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+G38 = excelFunctions.roundup(G36/E26,0);	
+H38 = excelFunctions.roundup(H36/E26,0);	
+I38 = excelFunctions.roundup(I36/E26,0);	
+J38 = excelFunctions.sum('G38:I38', zbierzZmienne());	
+//				
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+G44 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J3/E22,0)+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,(2*E22*(J3/E22-excelFunctions.rounddown(J3/E22,0))+1)),0);	
+H44 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J5/E22,0)+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,(2*E22*(J5/E22-excelFunctions.rounddown(J5/E22,0))+1)),0);	
+I44 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J9/E22,0)+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,(2*E22*(J9/E22-excelFunctions.rounddown(J9/E22,0))+1)),0);	
+J44 = excelFunctions.sum('G44:I44', zbierzZmienne())-I44-H44;	
+//ILOŚĆ KLIPS SRODKOWY KSR
+G40 = excelFunctions.roundup(G44*(J11/E24-1),0);	
+H40 = excelFunctions.roundup(H44*(J6/E24-1),0);	
+I40 = excelFunctions.roundup(I44*(J8/E24-1),0);	
+J40 = excelFunctions.sum('G40:I40', zbierzZmienne());	
+//				
+//ILOŚC KLIPS KOŃCOWY KK
+G42 = G44;	
+H42 = H44;	
+I42 = I44;	
+J42 = excelFunctions.sum('G42:I42', zbierzZmienne())-I42-H42;	
+//				
+//				
+//ILOŚĆ LISTWA 4m LLS			
+J46 = excelFunctions.roundup(excelFunctions.sum('J3:J10', zbierzZmienne())/E26,0);	
+//				
+//WYDAJNOŚC Z DESKI			
+J48 = excelFunctions.if(excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J34*E22*E24,0)>1,1,excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J34*E22*E24,0));	
+//				
+//POWIERZCHNIA TARASU
+G50 = excelFunctions.round(J11*J3,1);	
+H50 = excelFunctions.round(J5*J6,1);	
+I50 = excelFunctions.round(J8*J9,1);	
+J50 = excelFunctions.sum('G50:I50', zbierzZmienne());	
+
+// [algorytm taras 30.01.2022 - 4 i 6 m.xlsx]TYP C Równoległy				
+// DESKA TARASOWA UKŁAD RÓWNOLEGŁY ZAMEK POŁÓWKOWY 
+				
+//zmienne dla obliczen: 
+//var E22,E24,E26,G68,G70,G72,G74,G76,G78,G80,G84,G86,H68,H70,H72,H74,H76,H78,H80,H84,H86,I68,I70,I72,I74,I76,I78,I80,I84,I86,J10,J11,J3,J5,J6,J68,J70,J72,J74,J76,J78,J8,J80,J82,J84,J86,J9;
+
+ //obiekt zwracany przez funkcje zbierzZmienne 
+ //{'E22' : E22,'E24' : E24,'E26' : E26,'G68' : G68,'G70' : G70,'G72' : G72,'G74' : G74,'G76' : G76,'G78' : G78,'G80' : G80,'G84' : G84,'G86' : G86,'H68' : H68,'H70' : H70,'H72' : H72,'H74' : H74,'H76' : H76,'H78' : H78,'H80' : H80,'H84' : H84,'H86' : H86,'I68' : I68,'I70' : I70,'I72' : I72,'I74' : I74,'I76' : I76,'I78' : I78,'I80' : I80,'I84' : I84,'I86' : I86,'J10' : J10,'J11' : J11,'J3' : J3,'J5' : J5,'J6' : J6,'J68' : J68,'J70' : J70,'J72' : J72,'J74' : J74,'J76' : J76,'J78' : J78,'J8' : J8,'J80' : J80,'J82' : J82,'J84' : J84,'J86' : J86,'J9' : J9,};
+//weryfikacja danych
+	var Warunek_1 = excelFunctions.ifWithStatus(excelFunctions.or((J3/E22-excelFunctions.rounddown(J3/E22,0))*E22 >= 0.5,J3/E22-excelFunctions.rounddown(J3/E22,0) <= 0),"wymiary poprawne","zmień wymiar A tarasu/długość deski");	var Warunek_2 = excelFunctions.ifWithStatus(excelFunctions.or((J5/E22-excelFunctions.rounddown(J5/E22,0))*E22 >= 0.5,J5/E22-excelFunctions.rounddown(J5/E22,0) <= 0),"wymiary poprawne","zmień wymiar C tarasu/długość deski");	var Warunek_3 = excelFunctions.ifWithStatus(excelFunctions.or((J9/E22-excelFunctions.rounddown(J9/E22,0))*E22 >= 0.5,J9/E22-excelFunctions.rounddown(J9/E22,0) <= 0),"wymiary poprawne","zmień wymiar G tarasu/długość deski");	
+//ILOŚC DESKI METRY BIEŻACE MBD
+G68 = excelFunctions.if(J3<E22,excelFunctions.roundup((excelFunctions.rounddown(J3/E22,0)*excelFunctions.round(J11/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,(excelFunctions.round((J11/E24),0)/excelFunctions.rounddown(1/(J3/E22-excelFunctions.rounddown(J3/E22,0)),0))*E22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J3/E22,0)*excelFunctions.round(J11/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,(excelFunctions.round((J11/E24),0)/excelFunctions.rounddown(1/(J3/E22-excelFunctions.rounddown(J3/E22,0)),0))*E22))+J11/(2*E24)*0.5*E22+(excelFunctions.rounddown((J3-0.5*E22)/E22,0)*excelFunctions.round(0.5*J11/E24,0)*E22+excelFunctions.if(excelFunctions.mod((J3-0.5*E22),E22)==0,0,(excelFunctions.round((0.5*J11/E24),0)/excelFunctions.rounddown(1/((J3-0.5*E22)/E22-excelFunctions.rounddown((J3-0.5*E22)/E22,0)),0))*E22))),0));	
+H68 = excelFunctions.if(J5<E22,excelFunctions.roundup((excelFunctions.rounddown(J5/E22,0)*excelFunctions.round(J6/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,(excelFunctions.round((J6/E24),0)/excelFunctions.rounddown(1/(J5/E22-excelFunctions.rounddown(J5/E22,0)),0))*E22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J5/E22,0)*excelFunctions.round(J6/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,(excelFunctions.round((J6/E24),0)/excelFunctions.rounddown(1/(J5/E22-excelFunctions.rounddown(J5/E22,0)),0))*E22))+J6/(2*E24)*0.5*E22+(excelFunctions.rounddown((J5-0.5*E22)/E22,0)*excelFunctions.round(0.5*J6/E24,0)*E22+excelFunctions.if(excelFunctions.mod((J5-0.5*E22),E22)==0,0,(excelFunctions.round((0.5*J6/E24),0)/excelFunctions.rounddown(1/((J5-0.5*E22)/E22-excelFunctions.rounddown((J5-0.5*E22)/E22,0)),0))*E22))),0));	
+I68 = excelFunctions.if(J9<E22,excelFunctions.roundup((excelFunctions.rounddown(J9/E22,0)*excelFunctions.round(J8/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,(excelFunctions.round((J8/E24),0)/excelFunctions.rounddown(1/(J9/E22-excelFunctions.rounddown(J9/E22,0)),0))*E22)),0),excelFunctions.roundup((0.5*(excelFunctions.rounddown(J9/E22,0)*excelFunctions.round(J8/E24,0)*E22+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,(excelFunctions.round((J8/E24),0)/excelFunctions.rounddown(1/(J9/E22-excelFunctions.rounddown(J9/E22,0)),0))*E22))+J8/(2*E24)*0.5*E22+(excelFunctions.rounddown((J9-0.5*E22)/E22,0)*excelFunctions.round(0.5*J8/E24,0)*E22+excelFunctions.if(excelFunctions.mod((J9-0.5*E22),E22)==0,0,(excelFunctions.round((0.5*J8/E24),0)/excelFunctions.rounddown(1/((J9-0.5*E22)/E22-excelFunctions.rounddown((J9-0.5*E22)/E22,0)),0))*E22))),0));	
+J68 = excelFunctions.sum('G68:I68', zbierzZmienne());	
+//				
+//ILOŚĆ DESKI  SZTUKI DST
+G70 = excelFunctions.roundup(G68/E22,0);	
+H70 = excelFunctions.roundup(H68/E22,0);	
+I70 = excelFunctions.roundup(I68/E22,0);	
+J70 = excelFunctions.sum('G70:I70', zbierzZmienne());	
+//				
+//ILOŚC LEGAR METRY BIEŻACE MBL
+G72 = G74*E26;	
+H72 = H74*E26;	
+I72 = I74*E26;	
+J72 = excelFunctions.sum('G72:I72', zbierzZmienne());	
+//				
+//ILOŚĆ LEGAR SZTUKI PO 4 m LST
+G74 = excelFunctions.roundup((excelFunctions.roundup(J11*((E22/0.5)+1)*excelFunctions.rounddown(J3/E22,0)+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,J11*(2*E22*(J3/E22-excelFunctions.rounddown(J3/E22,0))+1)),0)/E26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J3<E22,1,J3/E22),0)*J11)/E26,0);	
+H74 = excelFunctions.roundup((excelFunctions.roundup(J6*((E22/0.5)+1)*excelFunctions.rounddown(J5/E22,0)+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,J6*(2*E22*(J5/E22-excelFunctions.rounddown(J5/E22,0))+1)),0)/E26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J5<E22,1,J5/E22),0)*J6)/E26,0);	
+I74 = excelFunctions.roundup((excelFunctions.roundup(J8*((E22/0.5)+1)*excelFunctions.rounddown(J9/E22,0)+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,J8*(2*E22*(J9/E22-excelFunctions.rounddown(J9/E22,0))+1)),0)/E26),0)+excelFunctions.roundup((excelFunctions.rounddown(excelFunctions.if(J9<E22,1,J9/E22),0)*J8)/E26,0);	
+J74 = excelFunctions.sum('G74:I74', zbierzZmienne());	
+//				
+//ILOŚĆ KLIPS POCZĄTKOWY KST
+G80 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J3/E22,0)+excelFunctions.if(excelFunctions.mod(J3,E22)==0,0,(2*E22*(J3/E22-excelFunctions.rounddown(J3/E22,0))+1)),0);	
+H80 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J5/E22,0)+excelFunctions.if(excelFunctions.mod(J5,E22)==0,0,(2*E22*(J5/E22-excelFunctions.rounddown(J5/E22,0))+1)),0);	
+I80 = excelFunctions.roundup((2*E22+1)*excelFunctions.rounddown(J9/E22,0)+excelFunctions.if(excelFunctions.mod(J9,E22)==0,0,(2*E22*(J9/E22-excelFunctions.rounddown(J9/E22,0))+1)),0);	
+J80 = excelFunctions.sum('G80:I80', zbierzZmienne())-I80-H80;	
+//ILOŚĆ KLIPS SRODKOWY KSR
+G76 = excelFunctions.roundup(G80*(J11/E24-1),0)+excelFunctions.rounddown(excelFunctions.if(J3<E22,1,J3/E22),0)*excelFunctions.roundup(J11/E24-1,0);	
+H76 = excelFunctions.roundup(H80*(J6/E24-1),0)+excelFunctions.rounddown(excelFunctions.if(J5<E22,1,J5/E22),0)*excelFunctions.roundup(J6/E24-1,0);	
+I76 = excelFunctions.roundup(I80*(J8/E24-1),0)+excelFunctions.rounddown(excelFunctions.if(J9<E22,1,J9/E22),0)*excelFunctions.roundup(J8/E24-1,0);	
+J76 = excelFunctions.sum('G76:I76', zbierzZmienne());	
+//				
+//ILOŚC KLIPS KOŃCOWY KK
+G78 = G80;	
+H78 = H80;	
+I78 = I80;	
+J78 = excelFunctions.sum('G78:I78', zbierzZmienne())-I78-H78;	
+//				
+//				
+//ILOŚĆ LISTWA 4m LLS			
+J82 = excelFunctions.roundup(excelFunctions.sum('J3:J10', zbierzZmienne())/4,0);	
+//				
+//WYDAJNOŚC Z DESKI
+G84 = excelFunctions.if(excelFunctions.roundup(J3*J11,0)/excelFunctions.roundup(G70*E22*E24,0)>1,1,excelFunctions.roundup(J3*J11,0)/excelFunctions.roundup(G70*E22*E24,0));	
+H84 = excelFunctions.if(excelFunctions.roundup(J5*J6,0)/excelFunctions.roundup(H70*E22*E24,0)>1,1,excelFunctions.roundup(J5*J6,0)/excelFunctions.roundup(H70*E22*E24,0));	
+I84 = excelFunctions.if(excelFunctions.roundup(J9*J8,0)/excelFunctions.roundup(I70*E22*E24,0)>1,1,excelFunctions.roundup(J9*J8,0)/excelFunctions.roundup(I70*E22*E24,0));	
+J84 = excelFunctions.if(excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J70*E22*E24,0)>1,1,excelFunctions.round(J3*J11+J6*J5+J8*J9,0)/excelFunctions.roundup(J70*E22*E24,0));	
+//				
+//POWIERZCHNIA TARASU
+G86 = excelFunctions.round(J11*J3,1);	
+H86 = excelFunctions.round(J5*J6,1);	
+I86 = excelFunctions.round(J8*J9,1);	
+J86 = excelFunctions.sum('G86:I86', zbierzZmienne());	
+
+    

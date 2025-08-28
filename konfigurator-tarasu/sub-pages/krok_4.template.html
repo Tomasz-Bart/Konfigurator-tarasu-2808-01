@@ -1,0 +1,29 @@
+<div id="krok_4" style="display: none;" class="krok-container">
+    %walidacja_komunikat_szablon%
+
+    <canvas id="canvas_krok_4" width="500" height="500" style="border: none;">
+    </canvas>
+<div class="ozimas__header-with-line ">
+    <div class="ozimas__header-line-left konfigurator_line_for_header2"></div>
+    <h2 class="ozimas__header-text konfigurator_header2" >%Wybierz_sposob_ulozenia%	</h2>
+    <div class="ozimas__header-line-right konfigurator_line_for_header2"></div>
+</div>
+    <div class="opcje-container">
+    <span>
+    <input type="radio" name="sposob_ulozenia" value="CIAGLY" onchange="konfigurator.wartoscZostalaZmieniona(this)" checked><br>
+    %CIAGLY%
+        </span>
+        <span>
+    <input type="radio" name="sposob_ulozenia" value="ZAMEK" onchange="konfigurator.wartoscZostalaZmieniona(this)"><br>
+    %ZAMEK%
+        </span>
+    </div>
+    %walidacja_komunikat_szablon%
+
+    <div class="konfigurator-nawigacja">
+        <span class="konfigurator-nawigacja-przycisk" onclick="konfigurator.krokCofnij()">%COFNIJ%</span>
+        <span class="konfigurator-nawigacja-przycisk" onclick="konfigurator.krokDalej()">%DALEJ%</span>
+    </div>
+
+    <!--koniec kroku-->
+</div>

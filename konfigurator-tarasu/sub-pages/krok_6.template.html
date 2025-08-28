@@ -1,0 +1,201 @@
+<div id="krok_6" style="display: none;" class="krok-container">
+    %walidacja_komunikat_szablon%
+
+    <canvas id="canvas_krok_6" width="500" height="500" style="border: none;">
+    </canvas>
+
+
+<div class="ozimas__header-with-line ">
+    <div class="ozimas__header-line-left konfigurator_line_for_header2"></div>
+    <h2 class="ozimas__header-text konfigurator_header2" >%Wybierz_odstep_miedzy_deskami%	</h2>
+    <div class="ozimas__header-line-right konfigurator_line_for_header2"></div>
+</div>
+<div class="opcje-container">
+    <span>
+    <input type="radio" name="deski_odstep" value="5" onchange="konfigurator.wartoscZostalaZmieniona({name: 'deski_odstep', value: 5, kodTechniczny: null})" checked><br>
+    %Odstep_5_mm%
+        </span>
+    <span>
+    <input type="radio" name="deski_odstep" value="3" onchange="konfigurator.wartoscZostalaZmieniona({name: 'deski_odstep', value: 3, kodTechniczny: null})" ><br>
+    %Odstep_3_mm%
+        </span>
+</div>
+
+<div class="ozimas__header-with-line ">
+    <div class="ozimas__header-line-left konfigurator_line_for_header2"></div>
+    <h2 class="ozimas__header-text konfigurator_header2" >%Wybierz_wykonczenie%	</h2>
+    <div class="ozimas__header-line-right konfigurator_line_for_header2"></div>
+</div>
+<div class="opcje-container listwa-padding">
+    <span id="listwa_maskujaca_wpc_kontener" class="listwa_maskujaca">
+    <input type="radio" name="listwa_maskujaca" value="listwa_maskujaca_wpc" onchange="konfigurator.wartoscZostalaZmieniona(this)" checked><br>
+    %listwa_maskujaca_wpc%<br>
+        <span>
+			<img class="deska_zdjecie KLON_LODOWY active" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-klon-lodowy.jpg">
+            <img class="deska_zdjecie SWIERK_DYMNY" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-swierk-dymny.jpg">
+            <img class="deska_zdjecie MAHON_NATURALNY" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-mahon-naturalny.jpg">
+            <img class="deska_zdjecie DAB_LINDBERG" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-dab-lindberg.jpg">
+            <img class="deska_zdjecie ORZECH_SZLACHETNY" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-orzech-szlachetny.jpg">
+            <img class="deska_zdjecie KLON_MARINA" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-klon-marina.jpg">
+            <img class="deska_zdjecie DAB_ZLOTY" src="%sciezka_do_plikow%/images/listwa-I/Hartika_Listwa-I-zloty-dab.jpg">
+
+        <br>
+                    <ul class="kolorMenu">
+                <li class="drop"><span class="przyciskWybierzKolor"><img src="%sciezka_do_plikow%/images/kolor-KLON_LODOWY.png"><span >%KLON_LODOWY%</span></span>
+                    <ul class="dropdown">
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'KLON_LODOWY', nazwa: '%KLON_LODOWY%', kolorPlik: 'kolor-KLON_LODOWY.png',  kodTechniczny: 'HL-03-4-1' })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-KLON_LODOWY.png">
+                                <span>%KLON_LODOWY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'SWIERK_DYMNY', nazwa: '%SWIERK_DYMNY%', kolorPlik: 'kolor-SWIERK_DYMNY.png', kodTechniczny:
+                        'HL-03-4-2'})">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-SWIERK_DYMNY.png">
+                                <span>%SWIERK_DYMNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'MAHON_NATURALNY', nazwa: '%MAHON_NATURALNY%', kolorPlik: 'kolor-MAHON_NATURALNY.png',
+                        kodTechniczny: 'HL-03-4-3'})">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-MAHON_NATURALNY.png">
+                                <span>%MAHON_NATURALNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'DAB_LINDBERG', nazwa: '%DAB_LINDBERG%', kolorPlik: 'kolor-DAB_LINDBERG.png', kodTechniczny:
+                        'HL-03-4-4' })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-DAB_LINDBERG.png">
+                                <span>%DAB_LINDBERG%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'ORZECH_SZLACHETNY', nazwa: '%ORZECH_SZLACHETNY%', kolorPlik: 'kolor-ORZECH_SZLACHETNY.png',
+                        kodTechniczny: 'HL-03-4-5'
+                        })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-ORZECH_SZLACHETNY.png">
+                                <span>%ORZECH_SZLACHETNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'KLON_MARINA', nazwa: '%KLON_MARINA%', kolorPlik: 'kolor-KLON_MARINA.png',
+                         kodTechniczny: 'HL-03-4-6' })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-KLON_MARINA.png">
+                                <span>%KLON_MARINA%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'DAB_ZLOTY', nazwa: '%DAB_ZLOTY%', kolorPlik: 'kolor-DAB_ZLOTY.png',
+                         kodTechniczny: 'HL-03-4-7' })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-DAB_ZLOTY.png">
+                                <span>%DAB_ZLOTY%</span></span>
+                        </li>
+                    </ul>
+		        </li>
+            </ul>
+        </span>
+        </span>
+    <span id="listwa_maskujaca_alu_kontener" class="listwa_maskujaca">
+    <input type="radio" name="listwa_maskujaca" value="listwa_maskujaca_alu" onchange="konfigurator.wartoscZostalaZmieniona(this)" ><br>
+    %listwa_maskujaca_alu%<br>
+        <span>
+                <img class="deska_zdjecie SREBRNY active" src="%sciezka_do_plikow%/images/listwa-alu/Hartika_listwamaskujaca_ALU_srebrna.jpg">
+                <img class="deska_zdjecie BRAZOWY" src="%sciezka_do_plikow%/images/listwa-alu/Hartika_listwamaskujaca_ALU_brazowa.jpg">
+                <img class="deska_zdjecie CZARNY" src="%sciezka_do_plikow%/images/listwa-alu/Hartika_listwamaskujaca_ALU_czarna.jpg">
+            <br>
+                    <ul class="kolorMenu">
+                <li class="disabled"><span class="przyciskWybierzKolor"><img src="%sciezka_do_plikow%/images/kolor-SREBRNY.png"><span >%SREBRNY%</span></span>
+                    <ul class="dropdown">
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'SREBRNY', nazwa: '%SREBRNY%', kolorPlik: 'kolor-SREBRNY.png', kodTechniczny: 'HLa-01-4-CO'
+                        })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-SREBRNY.png">
+                                <span>%SREBRNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'BRAZOWY', nazwa: '%BRAZOWY%', kolorPlik: 'kolor-BRAZOWY.png', kodTechniczny: 'HLa-02-4-CO'
+                        })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-BRAZOWY.png">
+                                <span>%BRAZOWY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'CZARNY', nazwa: '%CZARNY%', kolorPlik: 'kolor-CZARNY.png', kodTechniczny: 'HLa-03-4-CO'
+                        })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-CZARNY.png">
+                                <span>%CZARNY%</span></span>
+                        </li>
+
+                    </ul>
+		        </li>
+            </ul>
+        </span>
+        </span>
+    <span id="listwa_maskujaca_katowa_kontener" class="listwa_maskujaca">
+    <input type="radio" name="listwa_maskujaca" value="listwa_maskujaca_katowa" onchange="konfigurator.wartoscZostalaZmieniona(this)" ><br>
+    %listwa_maskujaca_katowa%<br>
+        <span>
+            <img class="deska_zdjecie KLON_LODOWY active" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-klon-lodowy.jpg">
+            <img class="deska_zdjecie SWIERK_DYMNY" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-swierk-dymny.jpg">
+            <img class="deska_zdjecie MAHON_NATURALNY" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-mahon-naturalny.jpg">
+            <img class="deska_zdjecie DAB_LINDBERG" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-dab-lindberg.jpg">
+            <img class="deska_zdjecie ORZECH_SZLACHETNY" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-orzech-szlachetny.jpg">
+            <img class="deska_zdjecie KLON_MARINA" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-klon-marina.jpg">
+            <img class="deska_zdjecie DAB_ZLOTY" src="%sciezka_do_plikow%/images/listwa-L/Hartika_Listwa-L-zloty-dab.jpg">
+
+        <br>
+                    <ul class="kolorMenu">
+                <li class="disabled"><span class="przyciskWybierzKolor"><img src="%sciezka_do_plikow%/images/kolor-KLON_LODOWY.png"><span >%KLON_LODOWY%</span></span>
+                    <ul class="dropdown">
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'KLON_LODOWY', nazwa: '%KLON_LODOWY%', kolorPlik: 'kolor-KLON_LODOWY.png', kodTechniczny: 'HLW-04-4-1'  })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-KLON_LODOWY.png">
+                                <span>%KLON_LODOWY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'SWIERK_DYMNY', nazwa: '%SWIERK_DYMNY%', kolorPlik: 'kolor-SWIERK_DYMNY.png', kodTechniczny:
+                        'HLW-04-4-2'  })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-SWIERK_DYMNY.png">
+                                <span>%SWIERK_DYMNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'MAHON_NATURALNY', nazwa: '%MAHON_NATURALNY%', kolorPlik: 'kolor-MAHON_NATURALNY.png',
+                        kodTechniczny: 'HLW-04-4-3'   })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-MAHON_NATURALNY.png">
+                                <span>%MAHON_NATURALNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'DAB_LINDBERG', nazwa: '%DAB_LINDBERG%', kolorPlik: 'kolor-DAB_LINDBERG.png', kodTechniczny:
+                        'HLW-04-4-4'  })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-DAB_LINDBERG.png">
+                                <span>%DAB_LINDBERG%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'ORZECH_SZLACHETNY', nazwa: '%ORZECH_SZLACHETNY%', kolorPlik: 'kolor-ORZECH_SZLACHETNY.png',
+                        kodTechniczny: 'HLW-04-4-5'
+                         })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-ORZECH_SZLACHETNY.png">
+                                <span>%ORZECH_SZLACHETNY%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'KLON_MARINA', nazwa: '%KLON_MARINA%', kolorPlik: 'kolor-KLON_MARINA.png',
+                         kodTechniczny: 'HLW-04-4-6' })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-KLON_MARINA.png">
+                                <span>%KLON_MARINA%</span></span>
+                        </li>
+                        <li onclick="konfigurator.wartoscZostalaZmieniona({name: 'listwa_maskujaca_kolor', value:
+                        'DAB_ZLOTY', nazwa: '%DAB_ZLOTY%', kolorPlik: 'kolor-DAB_ZLOTY.png',
+                         kodTechniczny: 'HLW-04-4-7' })">
+                            <span><img src="%sciezka_do_plikow%/images/kolor-DAB_ZLOTY.png">
+                                <span>%DAB_ZLOTY%</span></span>
+                        </li>
+                    </ul>
+		        </li>
+            </ul>
+        </span>
+        </span>
+</div>
+
+    %walidacja_komunikat_szablon%
+
+    <div class="konfigurator-nawigacja">
+        <span class="konfigurator-nawigacja-przycisk" onclick="konfigurator.krokCofnij()">%COFNIJ%</span>
+        <span class="konfigurator-nawigacja-przycisk" onclick="konfigurator.krokDalej()">%DALEJ%</span>
+    </div>
+
+    <!--koniec kroku-->
+</div>

@@ -1,0 +1,25 @@
+<div id="belka" class="belka-gora">
+	<div id="kreator_tarasu_naglowek" class="belka-tresc">
+    <h1>%Kreator_tarasu%</h1>
+    <p>%tekst_naglowek%</p>
+	</div>
+	<button id="buttonokonfiguratorze" class="belka-tresc popupinfokreator ">%Informacja_o_kreatorze%</button>
+</div>
+
+<div id="konfigurator-krok-indykator">
+    <ul>
+        <li class="active" onclick="konfigurator.zmienKrok(1)">1</li>
+        <li onclick="konfigurator.zmienKrok(2)">2</li>
+        <li onclick="konfigurator.zmienKrok(3)">3</li>
+        <li onclick="konfigurator.zmienKrok(4)">4</li>
+        <li onclick="konfigurator.zmienKrok(5)">5</li>
+        <li onclick="konfigurator.zmienKrok(6)">6</li>
+        <li onclick="konfigurator.zmienKrok(7)">7</li>
+    </ul>
+</div>
+<form id="konfigurator_form" name="konfigurator_form" action="/generujPDF.php" method="post">
+    <input type="hidden" id="generujPDF"  name="generujPDF" value="1">
+    <input type="hidden" id="wybrany_jezyk" name="wybrany_jezyk" value="%wybrany_jezyk%">
+    <input type="hidden" id="obraz_tarasu" name="obraz_tarasu" value="">
+    <input type="hidden" id="podsumowanie" name="podsumowanie" value="">
+    <input type="hidden" id="wp_upload_dir" name="wp_upload_dir" value="%wp_upload_dir%">
